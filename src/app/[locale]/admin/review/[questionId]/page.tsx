@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getDb } from '@/lib/db';
 import type { QuestionVersionRow } from '@/lib/db/rows';
 import { requireReviewAccess } from '@/lib/auth/guards';
@@ -80,7 +81,9 @@ export default async function ReviewQuestionPage({
   const approval = await standingApprovalFor(db, row.id);
   const history = await reviewHistory(db, questionId);
   const trail = await questionAuditTrail(db, questionId);
-  const latestOnContent = history.find((h) => h.questionVersionId === row.id && h.reviewFingerprint === fingerprint.stored) ?? null;
+  const latestOnContent =
+    history.find((h) => h.questionVersionId === row.id && h.reviewFingerprint === fingerprint.stored && !h.withdrawn) ?? null;
+  const tBatch = await getTranslations('admin.history');
   const status = approvalStatus(question.state, approval !== null, latestOnContent?.outcome ?? null);
 
   // Where "next" leads: this reviewer's queue, in queue order, narrowed to the exam they filtered on.
@@ -375,6 +378,15 @@ export default async function ReviewQuestionPage({
                       </p>
                       <p className="text-xs text-ink-subtle">Checked: {entry.checked.map((c) => CRITERION_LABEL[c]).join(', ') || 'nothing listed'}</p>
                       {entry.notes ? <p className="mt-1 whitespace-pre-wrap">{entry.notes}</p> : null}
+                      {entry.batchId ? (
+                        <p className="mt-1 text-xs text-ink-subtle">
+                          {tBatch.rich('batch', {
+                            link: (chunks) => <Link href={`/admin/review/batches/${entry.batchId}`}>{chunks}</Link>,
+                            id: entry.batchId.slice(0, 8),
+                          })}
+                          {entry.withdrawn ? <> {tBatch('withdrawn')}</> : null}
+                        </p>
+                      ) : null}
                     </li>
                   );
                 })}

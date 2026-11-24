@@ -121,7 +121,7 @@ export async function reviewQueue(db: Db, examKeys: readonly string[]): Promise<
   for (const examKey of examKeys) {
     for (const item of await getCandidates(db, examKey)) {
       const mine = decisions
-        .filter((d) => d.questionVersionId === item.questionVersionId && d.reviewFingerprint === item.reviewFingerprint)
+        .filter((d) => d.questionVersionId === item.questionVersionId && d.reviewFingerprint === item.reviewFingerprint && !d.withdrawn)
         .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
       const latest = mine[0] ?? null;
       rows.push({

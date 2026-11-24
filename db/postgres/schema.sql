@@ -617,6 +617,48 @@ CREATE TABLE access_grants (
 );
 CREATE INDEX idx_access_grants_user ON access_grants (user_id);
 ALTER TABLE examer.access_grants ENABLE ROW LEVEL SECURITY;
+-- Approvals recorded in bulk on a reviewer's behalf (020): what was exported
+-- to reviewers, each recorded batch, and which batch a decision came from.
+CREATE TABLE review_exports (
+  id            TEXT PRIMARY KEY,
+  file_name     TEXT NOT NULL,
+  filter_json   TEXT NOT NULL,
+  item_count    BIGINT NOT NULL,
+  created_by    TEXT NOT NULL,
+  created_at    TEXT NOT NULL
+);
+CREATE TABLE review_export_items (
+  export_id            TEXT NOT NULL REFERENCES review_exports (id),
+  question_id          TEXT NOT NULL,
+  question_version_id  TEXT NOT NULL,
+  question_version     BIGINT NOT NULL,
+  review_fingerprint   TEXT NOT NULL,
+  PRIMARY KEY (export_id, question_id)
+);
+CREATE INDEX idx_review_export_items_question ON review_export_items (question_id);
+CREATE TABLE review_batches (
+  id                    TEXT PRIMARY KEY,
+  source                TEXT NOT NULL,
+  source_name           TEXT NOT NULL,
+  source_sha256         TEXT,
+  export_id             TEXT REFERENCES review_exports (id),
+  reviewer_user_id      TEXT REFERENCES users (id) ON DELETE SET NULL,
+  reviewer_name         TEXT NOT NULL,
+  recorded_by           TEXT NOT NULL,
+  reviewed_on           TEXT NOT NULL,
+  approved_count        BIGINT NOT NULL DEFAULT 0,
+  created_at            TEXT NOT NULL,
+  withdrawn_at          TEXT,
+  withdrawn_by          TEXT,
+  withdraw_reason       TEXT
+);
+CREATE INDEX idx_review_batches_created ON review_batches (created_at);
+ALTER TABLE question_reviews ADD COLUMN batch_id TEXT REFERENCES review_batches (id);
+ALTER TABLE question_reviews ADD COLUMN recorded_by TEXT;
+CREATE INDEX idx_question_reviews_batch ON question_reviews (batch_id);
+ALTER TABLE examer.review_exports ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.review_export_items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE examer.review_batches ENABLE ROW LEVEL SECURITY;
 CREATE TABLE _migrations (name TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 INSERT INTO _migrations (name, applied_at) VALUES
 ('001_core.sql', '2026-09-30T10:28:36.291Z'),
@@ -637,6 +679,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('016_exam_passes.sql', '2026-10-29T00:00:00.000Z'),
 ('017_checkout_sessions.sql', '2026-11-02T00:00:00.000Z'),
 ('018_google_sign_in.sql', '2026-11-03T00:00:00.000Z'),
-('019_access_grants.sql', '2026-11-03T00:00:00.000Z');
+('019_access_grants.sql', '2026-11-03T00:00:00.000Z'),
+('020_review_batches.sql', '2026-11-24T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;

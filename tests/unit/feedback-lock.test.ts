@@ -295,6 +295,8 @@ describe('migration 003 on existing data', () => {
     // Additive, and needed by today's pool query, which serves only
     // human-approved questions (014); it touches nothing 003 rewrites.
     (await old.exec(fs.readFileSync('db/migrations/014_human_review.sql', 'utf8')));
+    // Likewise 020: the approval rule ignores approvals from withdrawn batches.
+    (await old.exec(fs.readFileSync('db/migrations/020_review_batches.sql', 'utf8')));
     const user = (await createUser(old));
     (await seedQuestions(old, SAT, { perDomain: 6 }));
 

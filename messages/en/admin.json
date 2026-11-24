@@ -1,0 +1,193 @@
+{
+  "links": {
+    "batch": "Record reviewers' approvals in bulk (admins)",
+    "batches": "Recorded approval batches (admins)"
+  },
+  "batchReview": {
+    "meta": { "title": "Record reviewers' approvals in bulk" },
+    "breadcrumb": "Batch approval",
+    "eyebrow": "Internal",
+    "title": "Record reviewers' approvals in bulk",
+    "lead": "For decisions a reviewer made outside the site: on the CSV we sent them, or on a list they returned. Each approval is recorded in the reviewer's name, for the exact version and text they saw, with this batch, the date they decided and you as the person who entered it. Nothing they did not approve is approved.",
+    "batchesLink": "Recorded batches and exports",
+    "queueLink": "Back to the review queue",
+    "noReviewers": {
+      "title": "No reviewer can be chosen yet",
+      "body": "An approval must name the reviewer who made it. Authorise each professor on <link>Reviewers</link>; they then sign in once and confirm the public wording of their credentials. Only confirmed reviewers appear here."
+    },
+    "unconfirmed": "{count, plural, one {# authorised reviewer has} other {# authorised reviewers have}} not confirmed their credentials yet and cannot be chosen.",
+    "filters": {
+      "heading": "Questions awaiting human review",
+      "exam": "Exam",
+      "allExams": "All exams",
+      "section": "Section",
+      "allSections": "All sections",
+      "domain": "Domain",
+      "allDomains": "All domains",
+      "sent": "Sent to reviewers",
+      "sentAny": "Sent or not",
+      "sentNever": "Never sent",
+      "sentIn": "In {file} ({count})",
+      "from": "Loaded from",
+      "to": "Loaded until",
+      "reset": "Clear filters"
+    },
+    "selection": {
+      "summary": "{selected, plural, =0 {Nothing selected} one {# question selected} other {# questions selected}} · {matching, plural, one {# matches} other {# match}} the filters",
+      "selectAll": "Select all {count} matching",
+      "clear": "Clear selection",
+      "hint": "Shift-click a box to select or clear everything between it and the last box you clicked.",
+      "approve": "Record approvals for {count, plural, one {# question} other {# questions}}",
+      "select": "Select {id}",
+      "page": "Page {page} of {pages}",
+      "previous": "Previous",
+      "next": "Next",
+      "empty": "No question awaiting review matches these filters."
+    },
+    "columns": {
+      "select": "Select",
+      "question": "Question",
+      "exam": "Exam",
+      "domain": "Domain",
+      "loaded": "Loaded",
+      "sent": "Sent"
+    },
+    "notSent": "not sent",
+    "export": {
+      "heading": "Send questions to reviewers",
+      "body": "Download the questions matching the filters above as a CSV, with their full text, key and explanation, and an empty decision column for the reviewer: \"approved\" only when they checked the answer key, the explanation, the wording and the syllabus alignment; \"changes\" with a note otherwise; blank if not reviewed. Each file holds at most {max} questions and is recorded, so the returned file can be checked against exactly what was sent.",
+      "button": "Download CSV of {count, plural, one {# question} other {# questions}}",
+      "done": "Downloaded {file}: {count, plural, one {# question} other {# questions}}.",
+      "truncated": "Only the first {max} were included. Filter by \"Never sent\" and download again for the rest."
+    },
+    "import": {
+      "heading": "Import a returned CSV",
+      "body": "Choose the file a reviewer sent back. It is read in your browser; only the question id, version, fingerprint, export id, decision and reviewer email of each row are sent. A dry run comes first.",
+      "file": "Returned CSV file",
+      "read": "{rows, plural, one {# row} other {# rows}} read from {file}.",
+      "tooMany": "This file has {rows} rows. Split it into files of at most {max} rows.",
+      "headerProblem": {
+        "empty-file": "The file is empty.",
+        "no-question-id-column": "The file has no question_id column.",
+        "no-decision-column": "The file has no decision column."
+      }
+    },
+    "record": {
+      "heading": "Who decided, and where it came from",
+      "reviewer": "Reviewer who made these decisions",
+      "chooseReviewer": "Choose a reviewer",
+      "reviewerOption": "{name} — {credentials}",
+      "reviewerHint": "The approvals are recorded in this person's name and shown to learners with their confirmed credentials. You are recorded as the person who entered them.",
+      "source": "Where the decisions came from",
+      "sourceHint": "For example: \"Approved list e-mailed by Prof. Rossi on 12 November\".",
+      "reviewedOn": "Date the reviewer decided",
+      "export": "Export this file answers",
+      "exportFromFile": "As the file says",
+      "attest": "The reviewer confirmed that for every question they marked approved they checked the answer key, the explanation, the wording and the syllabus alignment.",
+      "check": "Dry run",
+      "checking": "Checking…"
+    },
+    "plan": {
+      "heading": "Dry run",
+      "willApprove": "{count, plural, =0 {No question would be approved.} one {# question would be approved} other {# questions would be approved}}",
+      "alreadyApproved": "{count, plural, one {# already approved} other {# already approved}}",
+      "changed": "{count, plural, one {# changed since it was sent: refused} other {# changed since they were sent: refused}}",
+      "otherRefused": "{count, plural, one {# other row refused or left out} other {# other rows refused or left out}}",
+      "breakdown": "Every row, by result",
+      "outcome": "Result",
+      "rows": "Rows",
+      "problemRows": "Rows not approved",
+      "line": "Line",
+      "more": "And {count} more.",
+      "approve": "Approve {count, plural, one {# question} other {# questions}}"
+    },
+    "confirm": {
+      "title": "Record {count, plural, one {# approval} other {# approvals}}?",
+      "body": "{count, plural, one {# question} other {# questions}} will be recorded as approved by {reviewer} on {date}, from \"{source}\", entered by you. They are served to learners at once. You can withdraw the whole batch later.",
+      "yes": "Record {count, plural, one {# approval} other {# approvals}}",
+      "cancel": "Cancel"
+    },
+    "done": {
+      "title": "Recorded",
+      "body": "{count, plural, one {# approval} other {# approvals}} recorded as batch {batch}.",
+      "skipped": "{count, plural, one {# question was} other {# questions were}} edited or approved by someone else while the batch was written, and left out.",
+      "view": "View the batch"
+    },
+    "outcomes": {
+      "will-approve": "Will be approved",
+      "already-approved": "Already approved",
+      "changed-since-sent": "Changed since it was sent: the reviewer approved a different text",
+      "unverifiable": "No version, fingerprint or export to tell which text was approved",
+      "not-found": "No question with this id",
+      "not-reviewable": "Draft, quarantined or retired",
+      "content-integrity": "Stored text does not match its fingerprint",
+      "changes-requested": "Another reviewer asked for changes: decide on the review page",
+      "exam-not-authorised": "Reviewer not authorised for this exam",
+      "own-work": "The reviewer wrote or edited this question",
+      "other-reviewer": "The row names a different reviewer",
+      "not-approved": "Marked for changes: record it on the review page with the note",
+      "no-decision": "No decision",
+      "duplicate": "Repeats an earlier row",
+      "conflict": "Contradicts another row for the same question",
+      "unknown-export": "Names an export we have no record of",
+      "missing-question-id": "Missing question id",
+      "bad-question-id": "Unreadable question id",
+      "bad-version": "Unreadable version",
+      "bad-fingerprint": "Unreadable fingerprint",
+      "bad-export-id": "Unreadable export id",
+      "unknown-decision": "Unreadable decision",
+      "bad-reviewer-email": "Unreadable reviewer email"
+    },
+    "errors": {
+      "generic": "That did not work. Try again.",
+      "network": "The server could not be reached. Nothing was recorded."
+    }
+  },
+  "history": {
+    "batch": "Entered by an administrator on the reviewer's behalf, in <link>batch {id}</link>.",
+    "withdrawn": "That batch was withdrawn: this approval no longer counts."
+  },
+  "batches": {
+    "meta": { "title": "Recorded approval batches" },
+    "breadcrumb": "Batches",
+    "title": "Recorded approval batches",
+    "lead": "Every batch of approvals entered on a reviewer's behalf, newest first, and every file sent to reviewers. Withdrawing a batch makes all its approvals stop counting at once; the record stays.",
+    "empty": "No batch has been recorded yet.",
+    "back": "Record approvals in bulk",
+    "columns": {
+      "recorded": "Recorded",
+      "reviewer": "Reviewer",
+      "source": "Source",
+      "approvals": "Approvals",
+      "status": "Status"
+    },
+    "sourceCsv": "CSV: {name}",
+    "sourceSelection": "Selection: {name}",
+    "active": "Counts",
+    "withdrawn": "Withdrawn {date}",
+    "exportsHeading": "Files sent to reviewers",
+    "exportsEmpty": "No file has been exported yet.",
+    "exportLine": "{file}: {count, plural, one {# question} other {# questions}}, {date}",
+    "detail": {
+      "title": "Batch {id}",
+      "reviewer": "Reviewer of record",
+      "reviewedOn": "Reviewer decided on",
+      "recordedBy": "Entered by",
+      "recordedAt": "Entered at",
+      "source": "Source",
+      "sha": "File SHA-256",
+      "export": "Answers export",
+      "count": "Approvals recorded",
+      "withdrawnBy": "Withdrawn by {who} on {date}: {reason}",
+      "questions": "Questions in this batch",
+      "questionsMore": "Showing the first {shown} of {total}."
+    },
+    "withdraw": {
+      "open": "Withdraw this batch",
+      "reason": "Why it is withdrawn",
+      "reasonHint": "At least 10 characters. Kept with the batch.",
+      "confirm": "Withdraw {count, plural, one {# approval} other {# approvals}}",
+      "cancel": "Cancel"
+    }
+  }
+}

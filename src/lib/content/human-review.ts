@@ -30,8 +30,12 @@ import type { Question, Stimulus } from './question-schema';
  * (`getPool`) or a public page shows one (`getPublishedVersion`).
  *
  * The ledger is append-only. Reviews are recorded in the admin area by the
- * reviewer, signed in to their own account; there is no other way in. How a
- * reviewer is set up and what they do: docs/EXPERT-REVIEW.md.
+ * reviewer, signed in to their own account, or, for decisions a reviewer
+ * returned in a file, entered by an administrator in a named batch that keeps
+ * the reviewer as the decision's author and the administrator as the person
+ * who recorded it (src/lib/content/review-batches.ts). A withdrawn batch's
+ * approvals stop counting. How a reviewer is set up and what they do:
+ * docs/EXPERT-REVIEW.md.
  */
 
 export const REVIEW_CRITERIA = ['answer-key', 'explanation', 'wording', 'syllabus-alignment'] as const;
@@ -182,12 +186,25 @@ export function humanApprovalSql(qv = 'qv'): string {
        WHERE hr.question_version_id = ${qv}.id
          AND hr.review_fingerprint = ${qv}.review_fingerprint
          AND hr.outcome = 'approved'
+         AND ${liveDecisionSql('hr')}
          AND NOT EXISTS (
            SELECT 1 FROM question_reviews hx
             WHERE hx.question_version_id = hr.question_version_id
               AND hx.review_fingerprint = hr.review_fingerprint
               AND hx.outcome = 'changes_requested'
+              AND ${liveDecisionSql('hx')}
               AND hx.created_at > hr.created_at)))`;
+}
+
+/**
+ * SQL predicate: the decision aliased `alias` still counts. A decision counts
+ * unless it was recorded in a batch an administrator later withdrew
+ * (src/lib/content/review-batches.ts); the row itself stays in the ledger.
+ */
+export function liveDecisionSql(alias: string): string {
+  return `(${alias}.batch_id IS NULL OR NOT EXISTS (
+           SELECT 1 FROM review_batches wb_${alias}
+            WHERE wb_${alias}.id = ${alias}.batch_id AND wb_${alias}.withdrawn_at IS NOT NULL))`;
 }
 
 /**
@@ -202,11 +219,13 @@ export function changesRequestedSql(qv = 'qv'): string {
        WHERE hc.question_version_id = ${qv}.id
          AND hc.review_fingerprint = ${qv}.review_fingerprint
          AND hc.outcome = 'changes_requested'
+         AND ${liveDecisionSql('hc')}
          AND NOT EXISTS (
            SELECT 1 FROM question_reviews ha
             WHERE ha.question_version_id = hc.question_version_id
               AND ha.review_fingerprint = hc.review_fingerprint
               AND ha.outcome = 'approved'
+              AND ${liveDecisionSql('ha')}
               AND ha.created_at > hc.created_at)))`;
 }
 
@@ -243,6 +262,8 @@ export interface ReviewDecision {
   reviewFingerprint: string;
   outcome: ReviewOutcome;
   createdAt: string;
+  /** Recorded in a batch that was later withdrawn: kept in the ledger, but it no longer counts. */
+  withdrawn?: boolean;
 }
 
 /** The standing approval among these decisions for this exact version and content, if any: `humanApprovalSql` in code. */
@@ -252,7 +273,9 @@ export function standingApproval<T extends ReviewDecision>(
   fingerprint: string | null | undefined,
 ): T | null {
   if (!fingerprint) return null;
-  const mine = decisions.filter((d) => d.questionVersionId === questionVersionId && d.reviewFingerprint === fingerprint);
+  const mine = decisions.filter(
+    (d) => d.questionVersionId === questionVersionId && d.reviewFingerprint === fingerprint && !d.withdrawn,
+  );
   const approvals = mine.filter((d) => d.outcome === 'approved');
   const standing = approvals.filter(
     (approval) => !mine.some((d) => d.outcome === 'changes_requested' && d.createdAt > approval.createdAt),
@@ -529,6 +552,12 @@ export interface ReviewRecord {
   notes: string | null;
   reviewedOn: string;
   createdAt: string;
+  /** The batch it was recorded in, when an administrator entered it on the reviewer's behalf. */
+  batchId: string | null;
+  /** Who entered it, when that was not the reviewer: the administrator's user id. */
+  recordedBy: string | null;
+  /** Recorded in a batch that was later withdrawn: it no longer counts. */
+  withdrawn: boolean;
 }
 
 interface ReviewRow {
@@ -546,7 +575,14 @@ interface ReviewRow {
   notes: string | null;
   reviewed_on: string;
   created_at: string;
+  batch_id?: string | null;
+  recorded_by?: string | null;
+  withdrawn?: number | string | null;
 }
+
+/** Every column of the ledger, plus whether the decision's batch was withdrawn. */
+const REVIEW_SELECT = `SELECT qr.*, CASE WHEN wb.withdrawn_at IS NULL THEN 0 ELSE 1 END AS withdrawn
+    FROM question_reviews qr LEFT JOIN review_batches wb ON wb.id = qr.batch_id`;
 
 function toRecord(row: ReviewRow): ReviewRecord {
   return {
@@ -564,6 +600,9 @@ function toRecord(row: ReviewRow): ReviewRecord {
     notes: row.notes,
     reviewedOn: row.reviewed_on,
     createdAt: row.created_at,
+    batchId: row.batch_id ?? null,
+    recordedBy: row.recorded_by ?? null,
+    withdrawn: Number(row.withdrawn ?? 0) === 1,
   };
 }
 
@@ -646,6 +685,9 @@ export async function recordReview(db: Db, actor: AuthUser, input: RecordReviewI
     notes: input.notes ? input.notes : null,
     reviewedOn: now.toISOString().slice(0, 10),
     createdAt: now.toISOString(),
+    batchId: null,
+    recordedBy: null,
+    withdrawn: false,
   };
   const write = db.transaction(async () => {
     await db
@@ -689,15 +731,15 @@ export async function recordReview(db: Db, actor: AuthUser, input: RecordReviewI
 /** Every decision on any version of this question, newest first. */
 export async function reviewHistory(db: Db, questionId: string): Promise<ReviewRecord[]> {
   const rows = (await db
-    .prepare('SELECT * FROM question_reviews WHERE question_id = ? ORDER BY created_at DESC')
+    .prepare(`${REVIEW_SELECT} WHERE qr.question_id = ? ORDER BY qr.created_at DESC`)
     .all(questionId)) as ReviewRow[];
   return rows.map(toRecord);
 }
 
 /** Every decision recorded for these exams, for the coverage report. */
 export async function reviewDecisions(db: Db, examKeys?: readonly string[]): Promise<ReviewRecord[]> {
-  const where = examKeys?.length ? `WHERE exam_key IN (${examKeys.map(() => '?').join(', ')})` : '';
-  const rows = (await db.prepare(`SELECT * FROM question_reviews ${where}`).all(...(examKeys ?? []))) as ReviewRow[];
+  const where = examKeys?.length ? `WHERE qr.exam_key IN (${examKeys.map(() => '?').join(', ')})` : '';
+  const rows = (await db.prepare(`${REVIEW_SELECT} ${where}`).all(...(examKeys ?? []))) as ReviewRow[];
   return rows.map(toRecord);
 }
 
@@ -712,7 +754,7 @@ export async function standingApprovalFor(db: Db, questionVersionId: string): Pr
     | undefined;
   if (!row?.review_fingerprint) return null;
   const rows = (await db
-    .prepare('SELECT * FROM question_reviews WHERE question_version_id = ? AND review_fingerprint = ?')
+    .prepare(`${REVIEW_SELECT} WHERE qr.question_version_id = ? AND qr.review_fingerprint = ?`)
     .all(row.id, row.review_fingerprint)) as ReviewRow[];
   return standingApproval(rows.map(toRecord), row.id, row.review_fingerprint);
 }

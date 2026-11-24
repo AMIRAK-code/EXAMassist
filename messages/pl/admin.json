@@ -1,0 +1,193 @@
+{
+  "links": {
+    "batch": "Zbiorcze zapisywanie zatwierdzeń recenzentów (administratorzy)",
+    "batches": "Zapisane partie zatwierdzeń (administratorzy)"
+  },
+  "batchReview": {
+    "meta": { "title": "Zbiorcze zapisywanie zatwierdzeń recenzentów" },
+    "breadcrumb": "Zatwierdzanie zbiorcze",
+    "eyebrow": "Wewnętrzne",
+    "title": "Zbiorcze zapisywanie zatwierdzeń recenzentów",
+    "lead": "Dla decyzji podjętych przez recenzenta poza serwisem: w wysłanym mu pliku CSV lub na liście, którą nam odesłał. Każde zatwierdzenie zapisuje się w imieniu recenzenta, dla dokładnie tej wersji i treści, którą widział, razem z tą partią, datą decyzji i Tobą jako osobą, która je wprowadziła. Nic, czego recenzent nie zatwierdził, nie zostaje zatwierdzone.",
+    "batchesLink": "Zapisane partie i eksporty",
+    "queueLink": "Wróć do kolejki recenzji",
+    "noReviewers": {
+      "title": "Nie można jeszcze wybrać żadnego recenzenta",
+      "body": "Zatwierdzenie musi wskazywać recenzenta, który je wydał. Upoważnij każdego wykładowcę w sekcji <link>Recenzenci</link>; następnie loguje się on raz i potwierdza publiczny opis swoich kwalifikacji. Widoczni są tu tylko recenzenci, którzy to potwierdzili."
+    },
+    "unconfirmed": "Upoważnieni recenzenci, którzy nie potwierdzili jeszcze kwalifikacji: {count}. Do tego czasu nie można ich wybrać.",
+    "filters": {
+      "heading": "Pytania czekające na recenzję człowieka",
+      "exam": "Egzamin",
+      "allExams": "Wszystkie egzaminy",
+      "section": "Część",
+      "allSections": "Wszystkie części",
+      "domain": "Obszar",
+      "allDomains": "Wszystkie obszary",
+      "sent": "Wysłane do recenzentów",
+      "sentAny": "Wysłane lub nie",
+      "sentNever": "Nigdy niewysłane",
+      "sentIn": "W {file} ({count})",
+      "from": "Wczytane od",
+      "to": "Wczytane do",
+      "reset": "Wyczyść filtry"
+    },
+    "selection": {
+      "summary": "{selected, plural, =0 {Nic nie zaznaczono} one {Zaznaczono # pytanie} few {Zaznaczono # pytania} many {Zaznaczono # pytań} other {Zaznaczono # pytania}} · {matching, plural, one {# pasuje} few {# pasują} many {# pasuje} other {# pasuje}} do filtrów",
+      "selectAll": "Zaznacz wszystkie pasujące ({count})",
+      "clear": "Wyczyść zaznaczenie",
+      "hint": "Kliknij pole z wciśniętym Shift, aby zaznaczyć lub odznaczyć wszystko między nim a ostatnio klikniętym polem.",
+      "approve": "Zapisz zatwierdzenia dla {count, plural, one {# pytania} few {# pytań} many {# pytań} other {# pytania}}",
+      "select": "Zaznacz {id}",
+      "page": "Strona {page} z {pages}",
+      "previous": "Poprzednia",
+      "next": "Następna",
+      "empty": "Żadne pytanie czekające na recenzję nie pasuje do tych filtrów."
+    },
+    "columns": {
+      "select": "Zaznacz",
+      "question": "Pytanie",
+      "exam": "Egzamin",
+      "domain": "Obszar",
+      "loaded": "Wczytane",
+      "sent": "Wysłane"
+    },
+    "notSent": "niewysłane",
+    "export": {
+      "heading": "Wyślij pytania recenzentom",
+      "body": "Pobierz jako CSV pytania pasujące do powyższych filtrów, z pełną treścią, kluczem i wyjaśnieniem oraz pustą kolumną decision dla recenzenta: \"approved\" tylko wtedy, gdy sprawdził klucz odpowiedzi, wyjaśnienie, sformułowanie i zgodność z programem; w przeciwnym razie \"changes\" z uwagą; puste, jeśli nie recenzował. Każdy plik zawiera najwyżej {max} pytań i jest zapisywany, aby odesłany plik można było porównać dokładnie z tym, co wysłano.",
+      "button": "Pobierz CSV ({count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}})",
+      "done": "Pobrano {file}: {count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}.",
+      "truncated": "Uwzględniono tylko pierwsze {max}. Aby pobrać resztę, wybierz filtr \"Nigdy niewysłane\" i pobierz ponownie."
+    },
+    "import": {
+      "heading": "Zaimportuj odesłany plik CSV",
+      "body": "Wybierz plik odesłany przez recenzenta. Jest odczytywany w przeglądarce; z każdego wiersza wysyłane są tylko identyfikator pytania, wersja, fingerprint, identyfikator eksportu, decyzja i e-mail recenzenta. Najpierw odbywa się próba bez zapisu.",
+      "file": "Odesłany plik CSV",
+      "read": "Odczytano {rows, plural, one {# wiersz} few {# wiersze} many {# wierszy} other {# wiersza}} z {file}.",
+      "tooMany": "Ten plik ma {rows} wierszy. Podziel go na pliki po najwyżej {max} wierszy.",
+      "headerProblem": {
+        "empty-file": "Plik jest pusty.",
+        "no-question-id-column": "Plik nie ma kolumny question_id.",
+        "no-decision-column": "Plik nie ma kolumny decision."
+      }
+    },
+    "record": {
+      "heading": "Kto zdecydował i skąd to pochodzi",
+      "reviewer": "Recenzent, który podjął te decyzje",
+      "chooseReviewer": "Wybierz recenzenta",
+      "reviewerOption": "{name} — {credentials}",
+      "reviewerHint": "Zatwierdzenia zapisuje się w imieniu tej osoby i pokazuje uczącym się z kwalifikacjami, które potwierdziła. Ty jesteś zapisany jako osoba, która je wprowadziła.",
+      "source": "Skąd pochodzą decyzje",
+      "sourceHint": "Na przykład: \"Lista zatwierdzonych wysłana e-mailem przez prof. Rossi 12 listopada\".",
+      "reviewedOn": "Data decyzji recenzenta",
+      "export": "Eksport, na który odpowiada ten plik",
+      "exportFromFile": "Jak podano w pliku",
+      "attest": "Recenzent potwierdził, że w każdym pytaniu oznaczonym jako zatwierdzone sprawdził klucz odpowiedzi, wyjaśnienie, sformułowanie i zgodność z programem.",
+      "check": "Próba bez zapisu",
+      "checking": "Sprawdzanie…"
+    },
+    "plan": {
+      "heading": "Próba bez zapisu",
+      "willApprove": "{count, plural, =0 {Żadne pytanie nie zostałoby zatwierdzone.} one {Zatwierdzone zostałoby # pytanie} few {Zatwierdzone zostałyby # pytania} many {Zatwierdzonych zostałoby # pytań} other {Zatwierdzone zostałoby # pytania}}",
+      "alreadyApproved": "{count, plural, one {# już zatwierdzone} few {# już zatwierdzone} many {# już zatwierdzonych} other {# już zatwierdzonego}}",
+      "changed": "{count, plural, one {# zmienione po wysłaniu: odrzucone} few {# zmienione po wysłaniu: odrzucone} many {# zmienionych po wysłaniu: odrzucone} other {# zmienionego po wysłaniu: odrzucone}}",
+      "otherRefused": "{count, plural, one {# inny wiersz odrzucony lub pominięty} few {# inne wiersze odrzucone lub pominięte} many {# innych wierszy odrzuconych lub pominiętych} other {# innego wiersza odrzuconego lub pominiętego}}",
+      "breakdown": "Wszystkie wiersze według wyniku",
+      "outcome": "Wynik",
+      "rows": "Wiersze",
+      "problemRows": "Wiersze niezatwierdzone",
+      "line": "Wiersz",
+      "more": "I jeszcze {count}.",
+      "approve": "Zatwierdź {count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}"
+    },
+    "confirm": {
+      "title": "Zapisać {count, plural, one {# zatwierdzenie} few {# zatwierdzenia} many {# zatwierdzeń} other {# zatwierdzenia}}?",
+      "body": "{count, plural, one {# pytanie zostanie zapisane jako zatwierdzone} few {# pytania zostaną zapisane jako zatwierdzone} many {# pytań zostanie zapisanych jako zatwierdzone} other {# pytania zostanie zapisane jako zatwierdzone}} przez {reviewer} dnia {date}, ze źródła \"{source}\", wprowadzone przez Ciebie. Od razu trafiają do uczących się. Całą partię możesz później wycofać.",
+      "yes": "Zapisz {count, plural, one {# zatwierdzenie} few {# zatwierdzenia} many {# zatwierdzeń} other {# zatwierdzenia}}",
+      "cancel": "Anuluj"
+    },
+    "done": {
+      "title": "Zapisano",
+      "body": "Zapisano {count, plural, one {# zatwierdzenie} few {# zatwierdzenia} many {# zatwierdzeń} other {# zatwierdzenia}} jako partię {batch}.",
+      "skipped": "{count, plural, one {# pytanie zostało zmienione lub zatwierdzone} few {# pytania zostały zmienione lub zatwierdzone} many {# pytań zostało zmienionych lub zatwierdzonych} other {# pytania zostało zmienione lub zatwierdzone}} przez kogoś innego podczas zapisu partii i pominięte.",
+      "view": "Zobacz partię"
+    },
+    "outcomes": {
+      "will-approve": "Zostanie zatwierdzone",
+      "already-approved": "Już zatwierdzone",
+      "changed-since-sent": "Zmienione po wysłaniu: recenzent zatwierdził inną treść",
+      "unverifiable": "Brak wersji, fingerprintu lub eksportu, by ustalić, którą treść zatwierdzono",
+      "not-found": "Brak pytania o tym identyfikatorze",
+      "not-reviewable": "Szkic, w kwarantannie lub wycofane",
+      "content-integrity": "Zapisana treść nie zgadza się ze swoim fingerprintem",
+      "changes-requested": "Inny recenzent poprosił o zmiany: zdecyduj na stronie recenzji",
+      "exam-not-authorised": "Recenzent nie jest upoważniony do tego egzaminu",
+      "own-work": "Recenzent napisał lub edytował to pytanie",
+      "other-reviewer": "Wiersz wskazuje innego recenzenta",
+      "not-approved": "Oznaczone do zmian: zapisz to na stronie recenzji z uwagą",
+      "no-decision": "Brak decyzji",
+      "duplicate": "Powtarza wcześniejszy wiersz",
+      "conflict": "Przeczy innemu wierszowi tego samego pytania",
+      "unknown-export": "Wskazuje eksport, którego nie mamy w rejestrze",
+      "missing-question-id": "Brak identyfikatora pytania",
+      "bad-question-id": "Nieczytelny identyfikator pytania",
+      "bad-version": "Nieczytelna wersja",
+      "bad-fingerprint": "Nieczytelny fingerprint",
+      "bad-export-id": "Nieczytelny identyfikator eksportu",
+      "unknown-decision": "Nieczytelna decyzja",
+      "bad-reviewer-email": "Nieczytelny e-mail recenzenta"
+    },
+    "errors": {
+      "generic": "Nie udało się. Spróbuj ponownie.",
+      "network": "Nie udało się połączyć z serwerem. Nic nie zostało zapisane."
+    }
+  },
+  "history": {
+    "batch": "Wprowadzone przez administratora w imieniu recenzenta, w <link>partii {id}</link>.",
+    "withdrawn": "Ta partia została wycofana: to zatwierdzenie już się nie liczy."
+  },
+  "batches": {
+    "meta": { "title": "Zapisane partie zatwierdzeń" },
+    "breadcrumb": "Partie",
+    "title": "Zapisane partie zatwierdzeń",
+    "lead": "Każda partia zatwierdzeń wprowadzona w imieniu recenzenta, od najnowszej, i każdy plik wysłany recenzentom. Wycofanie partii sprawia, że wszystkie jej zatwierdzenia od razu przestają się liczyć; zapis pozostaje.",
+    "empty": "Nie zapisano jeszcze żadnej partii.",
+    "back": "Zbiorcze zapisywanie zatwierdzeń",
+    "columns": {
+      "recorded": "Zapisano",
+      "reviewer": "Recenzent",
+      "source": "Źródło",
+      "approvals": "Zatwierdzenia",
+      "status": "Stan"
+    },
+    "sourceCsv": "CSV: {name}",
+    "sourceSelection": "Zaznaczenie: {name}",
+    "active": "Obowiązuje",
+    "withdrawn": "Wycofano {date}",
+    "exportsHeading": "Pliki wysłane recenzentom",
+    "exportsEmpty": "Nie wyeksportowano jeszcze żadnego pliku.",
+    "exportLine": "{file}: {count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}, {date}",
+    "detail": {
+      "title": "Partia {id}",
+      "reviewer": "Recenzent w rejestrze",
+      "reviewedOn": "Data decyzji recenzenta",
+      "recordedBy": "Wprowadził(a)",
+      "recordedAt": "Wprowadzono",
+      "source": "Źródło",
+      "sha": "SHA-256 pliku",
+      "export": "Odpowiada na eksport",
+      "count": "Zapisane zatwierdzenia",
+      "withdrawnBy": "Wycofane przez {who} dnia {date}: {reason}",
+      "questions": "Pytania w tej partii",
+      "questionsMore": "Pokazano pierwsze {shown} z {total}."
+    },
+    "withdraw": {
+      "open": "Wycofaj tę partię",
+      "reason": "Dlaczego jest wycofywana",
+      "reasonHint": "Co najmniej 10 znaków. Zapisywane razem z partią.",
+      "confirm": "Wycofaj {count, plural, one {# zatwierdzenie} few {# zatwierdzenia} many {# zatwierdzeń} other {# zatwierdzenia}}",
+      "cancel": "Anuluj"
+    }
+  }
+}

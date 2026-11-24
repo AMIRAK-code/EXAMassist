@@ -17,5 +17,6 @@ export const NAMESPACES = [
   'about',
   'guides',
   'courses',
+  'admin',
 ] as const;
 export type Namespace = (typeof NAMESPACES)[number];

@@ -1,0 +1,193 @@
+{
+  "links": {
+    "batch": "Registrar en bloque las aprobaciones de los revisores (administradores)",
+    "batches": "Lotes de aprobaciones registrados (administradores)"
+  },
+  "batchReview": {
+    "meta": { "title": "Registrar en bloque las aprobaciones de los revisores" },
+    "breadcrumb": "Aprobación en bloque",
+    "eyebrow": "Interno",
+    "title": "Registrar en bloque las aprobaciones de los revisores",
+    "lead": "Para decisiones que un revisor tomó fuera del sitio: en el CSV que le enviamos o en una lista que nos devolvió. Cada aprobación se registra a nombre del revisor, para la versión y el texto exactos que vio, con este lote, la fecha en que decidió y tú como la persona que la introdujo. No se aprueba nada que el revisor no haya aprobado.",
+    "batchesLink": "Lotes registrados y exportaciones",
+    "queueLink": "Volver a la cola de revisión",
+    "noReviewers": {
+      "title": "Todavía no se puede elegir ningún revisor",
+      "body": "Una aprobación debe indicar el revisor que la dio. Autoriza a cada profesor en <link>Revisores</link>; después inicia sesión una vez y confirma la redacción pública de sus credenciales. Aquí solo aparecen los revisores que lo han confirmado."
+    },
+    "unconfirmed": "{count, plural, one {# revisor autorizado no ha} other {# revisores autorizados no han}} confirmado aún sus credenciales y no se pueden elegir.",
+    "filters": {
+      "heading": "Preguntas pendientes de revisión humana",
+      "exam": "Examen",
+      "allExams": "Todos los exámenes",
+      "section": "Sección",
+      "allSections": "Todas las secciones",
+      "domain": "Área",
+      "allDomains": "Todas las áreas",
+      "sent": "Enviadas a revisores",
+      "sentAny": "Enviadas o no",
+      "sentNever": "Nunca enviadas",
+      "sentIn": "En {file} ({count})",
+      "from": "Cargadas desde",
+      "to": "Cargadas hasta",
+      "reset": "Borrar filtros"
+    },
+    "selection": {
+      "summary": "{selected, plural, =0 {Nada seleccionado} one {# pregunta seleccionada} other {# preguntas seleccionadas}} · {matching, plural, one {# coincide} other {# coinciden}} con los filtros",
+      "selectAll": "Seleccionar las {count} que coinciden",
+      "clear": "Borrar selección",
+      "hint": "Haz clic con Mayús en una casilla para marcar o desmarcar todo lo que hay entre ella y la última casilla en la que hiciste clic.",
+      "approve": "Registrar aprobaciones de {count, plural, one {# pregunta} other {# preguntas}}",
+      "select": "Seleccionar {id}",
+      "page": "Página {page} de {pages}",
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "empty": "Ninguna pregunta pendiente de revisión coincide con estos filtros."
+    },
+    "columns": {
+      "select": "Seleccionar",
+      "question": "Pregunta",
+      "exam": "Examen",
+      "domain": "Área",
+      "loaded": "Cargada",
+      "sent": "Enviada"
+    },
+    "notSent": "no enviada",
+    "export": {
+      "heading": "Enviar preguntas a los revisores",
+      "body": "Descarga como CSV las preguntas que coinciden con los filtros de arriba, con su texto completo, clave y explicación, y una columna decision vacía para el revisor: \"approved\" solo si comprobó la clave de respuesta, la explicación, la redacción y la alineación con el temario; \"changes\" con una nota en otro caso; vacía si no la revisó. Cada archivo contiene como máximo {max} preguntas y queda registrado, para comparar el archivo devuelto con exactamente lo que se envió.",
+      "button": "Descargar CSV de {count, plural, one {# pregunta} other {# preguntas}}",
+      "done": "Descargado {file}: {count, plural, one {# pregunta} other {# preguntas}}.",
+      "truncated": "Solo se incluyeron las primeras {max}. Filtra por \"Nunca enviadas\" y vuelve a descargar para el resto."
+    },
+    "import": {
+      "heading": "Importar un CSV devuelto",
+      "body": "Elige el archivo que devolvió un revisor. Se lee en tu navegador; de cada fila solo se envían el id de la pregunta, la versión, el fingerprint, el id de exportación, la decisión y el email del revisor. Primero hay una prueba sin escritura.",
+      "file": "Archivo CSV devuelto",
+      "read": "{rows, plural, one {# fila leída} other {# filas leídas}} de {file}.",
+      "tooMany": "Este archivo tiene {rows} filas. Divídelo en archivos de como máximo {max} filas.",
+      "headerProblem": {
+        "empty-file": "El archivo está vacío.",
+        "no-question-id-column": "El archivo no tiene una columna question_id.",
+        "no-decision-column": "El archivo no tiene una columna decision."
+      }
+    },
+    "record": {
+      "heading": "Quién decidió y de dónde viene",
+      "reviewer": "Revisor que tomó estas decisiones",
+      "chooseReviewer": "Elige un revisor",
+      "reviewerOption": "{name} — {credentials}",
+      "reviewerHint": "Las aprobaciones se registran a nombre de esta persona y se muestran a los estudiantes con las credenciales que confirmó. Tú quedas registrado como quien las introdujo.",
+      "source": "De dónde vienen las decisiones",
+      "sourceHint": "Por ejemplo: \"Lista aprobada enviada por email por la prof. Rossi el 12 de noviembre\".",
+      "reviewedOn": "Fecha en que decidió el revisor",
+      "export": "Exportación a la que responde este archivo",
+      "exportFromFile": "La que indica el archivo",
+      "attest": "El revisor confirmó que, en cada pregunta que marcó como aprobada, comprobó la clave de respuesta, la explicación, la redacción y la alineación con el temario.",
+      "check": "Prueba sin escritura",
+      "checking": "Comprobando…"
+    },
+    "plan": {
+      "heading": "Prueba sin escritura",
+      "willApprove": "{count, plural, =0 {No se aprobaría ninguna pregunta.} one {Se aprobaría # pregunta} other {Se aprobarían # preguntas}}",
+      "alreadyApproved": "{count, plural, one {# ya aprobada} other {# ya aprobadas}}",
+      "changed": "{count, plural, one {# modificada desde el envío: rechazada} other {# modificadas desde el envío: rechazadas}}",
+      "otherRefused": "{count, plural, one {# otra fila rechazada o excluida} other {# otras filas rechazadas o excluidas}}",
+      "breakdown": "Todas las filas, por resultado",
+      "outcome": "Resultado",
+      "rows": "Filas",
+      "problemRows": "Filas no aprobadas",
+      "line": "Línea",
+      "more": "Y {count} más.",
+      "approve": "Aprobar {count, plural, one {# pregunta} other {# preguntas}}"
+    },
+    "confirm": {
+      "title": "¿Registrar {count, plural, one {# aprobación} other {# aprobaciones}}?",
+      "body": "{count, plural, one {# pregunta quedará registrada como aprobada} other {# preguntas quedarán registradas como aprobadas}} por {reviewer} el {date}, desde \"{source}\", introducidas por ti. Se ofrecen a los estudiantes de inmediato. Podrás retirar el lote entero más adelante.",
+      "yes": "Registrar {count, plural, one {# aprobación} other {# aprobaciones}}",
+      "cancel": "Cancelar"
+    },
+    "done": {
+      "title": "Registrado",
+      "body": "{count, plural, one {# aprobación registrada} other {# aprobaciones registradas}} como lote {batch}.",
+      "skipped": "{count, plural, one {# pregunta fue modificada o aprobada} other {# preguntas fueron modificadas o aprobadas}} por otra persona mientras se escribía el lote y quedó fuera.",
+      "view": "Ver el lote"
+    },
+    "outcomes": {
+      "will-approve": "Se aprobará",
+      "already-approved": "Ya aprobada",
+      "changed-since-sent": "Modificada desde el envío: el revisor aprobó otro texto",
+      "unverifiable": "Sin versión, fingerprint ni exportación para saber qué texto se aprobó",
+      "not-found": "No hay ninguna pregunta con este id",
+      "not-reviewable": "Borrador, en cuarentena o retirada",
+      "content-integrity": "El texto guardado no coincide con su fingerprint",
+      "changes-requested": "Otro revisor pidió cambios: decide en la página de revisión",
+      "exam-not-authorised": "Revisor no autorizado para este examen",
+      "own-work": "El revisor escribió o editó esta pregunta",
+      "other-reviewer": "La fila indica otro revisor",
+      "not-approved": "Marcada para cambios: regístrala en la página de revisión con la nota",
+      "no-decision": "Sin decisión",
+      "duplicate": "Repite una fila anterior",
+      "conflict": "Contradice otra fila de la misma pregunta",
+      "unknown-export": "Indica una exportación de la que no hay registro",
+      "missing-question-id": "Falta el id de la pregunta",
+      "bad-question-id": "Id de la pregunta ilegible",
+      "bad-version": "Versión ilegible",
+      "bad-fingerprint": "Fingerprint ilegible",
+      "bad-export-id": "Id de exportación ilegible",
+      "unknown-decision": "Decisión ilegible",
+      "bad-reviewer-email": "Email del revisor ilegible"
+    },
+    "errors": {
+      "generic": "No ha funcionado. Inténtalo de nuevo.",
+      "network": "No se pudo contactar con el servidor. No se registró nada."
+    }
+  },
+  "history": {
+    "batch": "Introducida por un administrador en nombre del revisor, en el <link>lote {id}</link>.",
+    "withdrawn": "Ese lote se retiró: esta aprobación ya no cuenta."
+  },
+  "batches": {
+    "meta": { "title": "Lotes de aprobaciones registrados" },
+    "breadcrumb": "Lotes",
+    "title": "Lotes de aprobaciones registrados",
+    "lead": "Cada lote de aprobaciones introducido en nombre de un revisor, del más reciente al más antiguo, y cada archivo enviado a los revisores. Retirar un lote hace que todas sus aprobaciones dejen de contar a la vez; el registro se conserva.",
+    "empty": "Todavía no se ha registrado ningún lote.",
+    "back": "Registrar aprobaciones en bloque",
+    "columns": {
+      "recorded": "Registrado",
+      "reviewer": "Revisor",
+      "source": "Origen",
+      "approvals": "Aprobaciones",
+      "status": "Estado"
+    },
+    "sourceCsv": "CSV: {name}",
+    "sourceSelection": "Selección: {name}",
+    "active": "Vigente",
+    "withdrawn": "Retirado el {date}",
+    "exportsHeading": "Archivos enviados a los revisores",
+    "exportsEmpty": "Todavía no se ha exportado ningún archivo.",
+    "exportLine": "{file}: {count, plural, one {# pregunta} other {# preguntas}}, {date}",
+    "detail": {
+      "title": "Lote {id}",
+      "reviewer": "Revisor registrado",
+      "reviewedOn": "Fecha de la decisión del revisor",
+      "recordedBy": "Introducido por",
+      "recordedAt": "Introducido el",
+      "source": "Origen",
+      "sha": "SHA-256 del archivo",
+      "export": "Responde a la exportación",
+      "count": "Aprobaciones registradas",
+      "withdrawnBy": "Retirado por {who} el {date}: {reason}",
+      "questions": "Preguntas de este lote",
+      "questionsMore": "Se muestran las primeras {shown} de {total}."
+    },
+    "withdraw": {
+      "open": "Retirar este lote",
+      "reason": "Por qué se retira",
+      "reasonHint": "Al menos 10 caracteres. Se guarda con el lote.",
+      "confirm": "Retirar {count, plural, one {# aprobación} other {# aprobaciones}}",
+      "cancel": "Cancelar"
+    }
+  }
+}

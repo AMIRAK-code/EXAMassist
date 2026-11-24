@@ -1,0 +1,193 @@
+{
+  "links": {
+    "batch": "Registra in blocco le approvazioni dei revisori (amministratori)",
+    "batches": "Blocchi di approvazioni registrati (amministratori)"
+  },
+  "batchReview": {
+    "meta": { "title": "Registra in blocco le approvazioni dei revisori" },
+    "breadcrumb": "Approvazione in blocco",
+    "eyebrow": "Interno",
+    "title": "Registra in blocco le approvazioni dei revisori",
+    "lead": "Per le decisioni che un revisore ha preso fuori dal sito: sul CSV che gli abbiamo inviato o su un elenco che ci ha restituito. Ogni approvazione viene registrata a nome del revisore, per la versione e il testo esatti che ha visto, con questo blocco, la data della decisione e te come persona che l'ha inserita. Non viene approvato nulla che il revisore non abbia approvato.",
+    "batchesLink": "Blocchi registrati ed esportazioni",
+    "queueLink": "Torna alla coda di revisione",
+    "noReviewers": {
+      "title": "Non si può ancora scegliere nessun revisore",
+      "body": "Un'approvazione deve indicare il revisore che l'ha data. Autorizza ogni docente in <link>Revisori</link>; poi accede una volta e conferma la dicitura pubblica delle sue credenziali. Qui compaiono solo i revisori che hanno confermato."
+    },
+    "unconfirmed": "{count, plural, one {# revisore autorizzato non ha} other {# revisori autorizzati non hanno}} ancora confermato le credenziali e non si possono scegliere.",
+    "filters": {
+      "heading": "Domande in attesa di revisione umana",
+      "exam": "Esame",
+      "allExams": "Tutti gli esami",
+      "section": "Sezione",
+      "allSections": "Tutte le sezioni",
+      "domain": "Area",
+      "allDomains": "Tutte le aree",
+      "sent": "Inviate ai revisori",
+      "sentAny": "Inviate o no",
+      "sentNever": "Mai inviate",
+      "sentIn": "In {file} ({count})",
+      "from": "Caricate dal",
+      "to": "Caricate fino al",
+      "reset": "Azzera i filtri"
+    },
+    "selection": {
+      "summary": "{selected, plural, =0 {Nessuna selezione} one {# domanda selezionata} other {# domande selezionate}} · {matching, plural, one {# corrisponde} other {# corrispondono}} ai filtri",
+      "selectAll": "Seleziona tutte le {count} corrispondenti",
+      "clear": "Annulla la selezione",
+      "hint": "Fai clic con Maiusc su una casella per selezionare o deselezionare tutto tra quella e l'ultima casella cliccata.",
+      "approve": "Registra le approvazioni per {count, plural, one {# domanda} other {# domande}}",
+      "select": "Seleziona {id}",
+      "page": "Pagina {page} di {pages}",
+      "previous": "Precedente",
+      "next": "Successiva",
+      "empty": "Nessuna domanda in attesa di revisione corrisponde a questi filtri."
+    },
+    "columns": {
+      "select": "Seleziona",
+      "question": "Domanda",
+      "exam": "Esame",
+      "domain": "Area",
+      "loaded": "Caricata",
+      "sent": "Inviata"
+    },
+    "notSent": "non inviata",
+    "export": {
+      "heading": "Invia le domande ai revisori",
+      "body": "Scarica come CSV le domande che corrispondono ai filtri qui sopra, con testo completo, chiave e spiegazione, e una colonna decision vuota per il revisore: \"approved\" solo se ha controllato la chiave di risposta, la spiegazione, la formulazione e l'allineamento al programma; \"changes\" con una nota negli altri casi; vuota se non l'ha rivista. Ogni file contiene al massimo {max} domande e viene registrato, così il file restituito si può confrontare con esattamente ciò che è stato inviato.",
+      "button": "Scarica il CSV di {count, plural, one {# domanda} other {# domande}}",
+      "done": "Scaricato {file}: {count, plural, one {# domanda} other {# domande}}.",
+      "truncated": "Sono state incluse solo le prime {max}. Filtra per \"Mai inviate\" e scarica di nuovo per le altre."
+    },
+    "import": {
+      "heading": "Importa un CSV restituito",
+      "body": "Scegli il file che un revisore ha rimandato. Viene letto nel tuo browser; di ogni riga si inviano solo id della domanda, versione, fingerprint, id dell'esportazione, decisione ed email del revisore. Prima viene una prova senza scrittura.",
+      "file": "File CSV restituito",
+      "read": "{rows, plural, one {# riga letta} other {# righe lette}} da {file}.",
+      "tooMany": "Questo file ha {rows} righe. Dividilo in file da al massimo {max} righe.",
+      "headerProblem": {
+        "empty-file": "Il file è vuoto.",
+        "no-question-id-column": "Il file non ha una colonna question_id.",
+        "no-decision-column": "Il file non ha una colonna decision."
+      }
+    },
+    "record": {
+      "heading": "Chi ha deciso e da dove viene",
+      "reviewer": "Revisore che ha preso queste decisioni",
+      "chooseReviewer": "Scegli un revisore",
+      "reviewerOption": "{name} — {credentials}",
+      "reviewerHint": "Le approvazioni sono registrate a nome di questa persona e mostrate agli studenti con le credenziali che ha confermato. Tu risulti come la persona che le ha inserite.",
+      "source": "Da dove vengono le decisioni",
+      "sourceHint": "Per esempio: \"Elenco approvato inviato per email dal prof. Rossi il 12 novembre\".",
+      "reviewedOn": "Data della decisione del revisore",
+      "export": "Esportazione a cui risponde questo file",
+      "exportFromFile": "Come indicato nel file",
+      "attest": "Il revisore ha confermato che, per ogni domanda segnata come approvata, ha controllato la chiave di risposta, la spiegazione, la formulazione e l'allineamento al programma.",
+      "check": "Prova senza scrittura",
+      "checking": "Verifica in corso…"
+    },
+    "plan": {
+      "heading": "Prova senza scrittura",
+      "willApprove": "{count, plural, =0 {Nessuna domanda verrebbe approvata.} one {# domanda verrebbe approvata} other {# domande verrebbero approvate}}",
+      "alreadyApproved": "{count, plural, one {# già approvata} other {# già approvate}}",
+      "changed": "{count, plural, one {# modificata dopo l'invio: rifiutata} other {# modificate dopo l'invio: rifiutate}}",
+      "otherRefused": "{count, plural, one {# altra riga rifiutata o esclusa} other {# altre righe rifiutate o escluse}}",
+      "breakdown": "Tutte le righe, per esito",
+      "outcome": "Esito",
+      "rows": "Righe",
+      "problemRows": "Righe non approvate",
+      "line": "Riga",
+      "more": "E altre {count}.",
+      "approve": "Approva {count, plural, one {# domanda} other {# domande}}"
+    },
+    "confirm": {
+      "title": "Registrare {count, plural, one {# approvazione} other {# approvazioni}}?",
+      "body": "{count, plural, one {# domanda sarà registrata come approvata} other {# domande saranno registrate come approvate}} da {reviewer} il {date}, da \"{source}\", inserite da te. Vengono proposte subito agli studenti. Potrai ritirare l'intero blocco in seguito.",
+      "yes": "Registra {count, plural, one {# approvazione} other {# approvazioni}}",
+      "cancel": "Annulla"
+    },
+    "done": {
+      "title": "Registrato",
+      "body": "{count, plural, one {# approvazione registrata} other {# approvazioni registrate}} come blocco {batch}.",
+      "skipped": "{count, plural, one {# domanda è stata modificata o approvata} other {# domande sono state modificate o approvate}} da qualcun altro durante la scrittura del blocco ed è stata esclusa.",
+      "view": "Vedi il blocco"
+    },
+    "outcomes": {
+      "will-approve": "Sarà approvata",
+      "already-approved": "Già approvata",
+      "changed-since-sent": "Modificata dopo l'invio: il revisore ha approvato un testo diverso",
+      "unverifiable": "Nessuna versione, fingerprint o esportazione per capire quale testo è stato approvato",
+      "not-found": "Nessuna domanda con questo id",
+      "not-reviewable": "Bozza, in quarantena o ritirata",
+      "content-integrity": "Il testo salvato non corrisponde al suo fingerprint",
+      "changes-requested": "Un altro revisore ha chiesto modifiche: decidi nella pagina di revisione",
+      "exam-not-authorised": "Revisore non autorizzato per questo esame",
+      "own-work": "Il revisore ha scritto o modificato questa domanda",
+      "other-reviewer": "La riga indica un altro revisore",
+      "not-approved": "Segnata per modifiche: registrala nella pagina di revisione con la nota",
+      "no-decision": "Nessuna decisione",
+      "duplicate": "Ripete una riga precedente",
+      "conflict": "Contraddice un'altra riga della stessa domanda",
+      "unknown-export": "Indica un'esportazione di cui non abbiamo traccia",
+      "missing-question-id": "Id della domanda mancante",
+      "bad-question-id": "Id della domanda illeggibile",
+      "bad-version": "Versione illeggibile",
+      "bad-fingerprint": "Fingerprint illeggibile",
+      "bad-export-id": "Id dell'esportazione illeggibile",
+      "unknown-decision": "Decisione illeggibile",
+      "bad-reviewer-email": "Email del revisore illeggibile"
+    },
+    "errors": {
+      "generic": "Non ha funzionato. Riprova.",
+      "network": "Impossibile raggiungere il server. Non è stato registrato nulla."
+    }
+  },
+  "history": {
+    "batch": "Inserita da un amministratore per conto del revisore, nel <link>blocco {id}</link>.",
+    "withdrawn": "Quel blocco è stato ritirato: questa approvazione non conta più."
+  },
+  "batches": {
+    "meta": { "title": "Blocchi di approvazioni registrati" },
+    "breadcrumb": "Blocchi",
+    "title": "Blocchi di approvazioni registrati",
+    "lead": "Ogni blocco di approvazioni inserito per conto di un revisore, dal più recente, e ogni file inviato ai revisori. Ritirare un blocco fa smettere di contare subito tutte le sue approvazioni; la registrazione resta.",
+    "empty": "Non è stato ancora registrato nessun blocco.",
+    "back": "Registra approvazioni in blocco",
+    "columns": {
+      "recorded": "Registrato",
+      "reviewer": "Revisore",
+      "source": "Origine",
+      "approvals": "Approvazioni",
+      "status": "Stato"
+    },
+    "sourceCsv": "CSV: {name}",
+    "sourceSelection": "Selezione: {name}",
+    "active": "Valido",
+    "withdrawn": "Ritirato il {date}",
+    "exportsHeading": "File inviati ai revisori",
+    "exportsEmpty": "Non è stato ancora esportato nessun file.",
+    "exportLine": "{file}: {count, plural, one {# domanda} other {# domande}}, {date}",
+    "detail": {
+      "title": "Blocco {id}",
+      "reviewer": "Revisore registrato",
+      "reviewedOn": "Data della decisione del revisore",
+      "recordedBy": "Inserito da",
+      "recordedAt": "Inserito il",
+      "source": "Origine",
+      "sha": "SHA-256 del file",
+      "export": "Risponde all'esportazione",
+      "count": "Approvazioni registrate",
+      "withdrawnBy": "Ritirato da {who} il {date}: {reason}",
+      "questions": "Domande in questo blocco",
+      "questionsMore": "Sono mostrate le prime {shown} di {total}."
+    },
+    "withdraw": {
+      "open": "Ritira questo blocco",
+      "reason": "Perché viene ritirato",
+      "reasonHint": "Almeno 10 caratteri. Resta registrato con il blocco.",
+      "confirm": "Ritira {count, plural, one {# approvazione} other {# approvazioni}}",
+      "cancel": "Annulla"
+    }
+  }
+}
