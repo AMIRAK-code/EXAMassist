@@ -4,10 +4,13 @@ import {
   assessReadiness,
   examPaceSeconds,
   leadingCount,
+  sectionQuestionCount,
   type ReadinessInput,
 } from '@/lib/learning/readiness';
-import { requireExamConfig } from '@/lib/exams/registry';
-import { english, englishList } from './helpers/intl';
+import { createTranslator } from 'next-intl';
+import { LOCALES } from '@/i18n/locales';
+import { EXAM_CONFIGS, requireExamConfig } from '@/lib/exams/registry';
+import { english, englishList, messagesFor } from './helpers/intl';
 
 /**
  * The readiness assessment exists to answer "am I on track for my target?"
@@ -63,6 +66,38 @@ describe('published-fact helpers', () => {
   it('returns null when the test maker does not publish item counts', () => {
     // LSAC publishes section times but not questions per section.
     expect(examPaceSeconds(LSAT)).toBeNull();
+  });
+
+  it('reads a section question count only from a number the text starts with', () => {
+    const section = (config: typeof SAT, key: string) => config.sections.find((s) => s.key === key)!;
+    // "50 (Mathematics 24, Reading comprehension 11, …)"
+    expect(sectionQuestionCount(BOCCONI.sections[0])).toBe(50);
+    // "27 administered (25 operational + 2 pretest/unscored)"
+    expect(sectionQuestionCount(SAT.sections[0])).toBe(27);
+    // "four sets, each five to eight questions (implies 20-32 items)": no count, not 20.
+    expect(sectionQuestionCount(section(LSAT, 'rc'))).toBeNull();
+    // Published as null.
+    expect(sectionQuestionCount(section(LSAT, 'lr1'))).toBeNull();
+    // "1 essay prompt": an essay is not a question.
+    expect(sectionQuestionCount(section(LSAT, 'writing'))).toBeNull();
+    expect(sectionQuestionCount(section(requireExamConfig('enhanced-act'), 'writing'))).toBeNull();
+  });
+
+  it('gives the start page a number for every section, so no language prints NaN', () => {
+    for (const locale of LOCALES) {
+      const t = createTranslator({ locale, messages: messagesFor(locale), namespace: 'practice' }) as unknown as (
+        key: string,
+        values: { count: number },
+      ) => string;
+      for (const config of EXAM_CONFIGS) {
+        for (const section of config.sections) {
+          const count = sectionQuestionCount(section);
+          if (count === null) continue;
+          expect(Number.isInteger(count) && count > 0, `${config.examKey}/${section.key}`).toBe(true);
+          expect(t('start.intro.questions', { count }), `${locale} ${config.examKey}/${section.key}`).not.toMatch(/NaN/);
+        }
+      }
+    }
   });
 });
 

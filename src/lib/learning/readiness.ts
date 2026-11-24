@@ -113,6 +113,20 @@ export function leadingCount(value: string | null): number | null {
 }
 
 /**
+ * How many questions a section has, for a "50 questions" label, or null when
+ * that cannot be said. The published count is free text, so only a number at
+ * its very start is taken: "27 administered (25 operational + 2 pretest)" is
+ * 27, while the LSAT's "four sets, each five to eight questions (implies 20-32
+ * items)" publishes no count. An essay prompt is not a question, so essay
+ * sections have none either.
+ */
+export function sectionQuestionCount(section: ExamConfig['sections'][number]): number | null {
+  if (section.responseTypes.includes('essay')) return null;
+  const match = /^\s*(\d+)\b/.exec(section.officialQuestionCount ?? '');
+  return match ? Number(match[1]) : null;
+}
+
+/**
  * The exam's own published pace, in seconds per question. Returns null when the
  * test maker does not publish enough to compute it (the LSAT, for instance,
  * publishes section times but not item counts).
