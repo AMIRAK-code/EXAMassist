@@ -1,0 +1,193 @@
+{
+  "links": {
+    "batch": "Hakem onaylarını toplu kaydet (yöneticiler)",
+    "batches": "Kaydedilen onay grupları (yöneticiler)"
+  },
+  "batchReview": {
+    "meta": { "title": "Hakem onaylarını toplu kaydet" },
+    "breadcrumb": "Toplu onay",
+    "eyebrow": "Dahili",
+    "title": "Hakem onaylarını toplu kaydet",
+    "lead": "Bir hakemin site dışında verdiği kararlar için: ona gönderdiğimiz CSV üzerinde ya da bize geri gönderdiği bir listede. Her onay hakemin adına, gördüğü tam sürüm ve metin için, bu grup, karar tarihi ve onu giren kişi olarak sizinle birlikte kaydedilir. Hakemin onaylamadığı hiçbir şey onaylanmaz.",
+    "batchesLink": "Kaydedilen gruplar ve dışa aktarımlar",
+    "queueLink": "İnceleme kuyruğuna dön",
+    "noReviewers": {
+      "title": "Henüz hiçbir hakem seçilemiyor",
+      "body": "Bir onay, onu veren hakemi belirtmelidir. Her öğretim üyesini <link>Hakemler</link> sayfasında yetkilendirin; ardından bir kez giriş yapıp yetkinliklerinin herkese açık ifadesini onaylarlar. Burada yalnızca onaylamış hakemler görünür."
+    },
+    "unconfirmed": "{count, plural, one {# yetkili hakem} other {# yetkili hakem}} yetkinliklerini henüz onaylamadı ve seçilemez.",
+    "filters": {
+      "heading": "İnsan incelemesi bekleyen sorular",
+      "exam": "Sınav",
+      "allExams": "Tüm sınavlar",
+      "section": "Bölüm",
+      "allSections": "Tüm bölümler",
+      "domain": "Alan",
+      "allDomains": "Tüm alanlar",
+      "sent": "Hakemlere gönderilen",
+      "sentAny": "Gönderilmiş ya da değil",
+      "sentNever": "Hiç gönderilmemiş",
+      "sentIn": "{file} içinde ({count})",
+      "from": "Yükleme başlangıcı",
+      "to": "Yükleme bitişi",
+      "reset": "Filtreleri temizle"
+    },
+    "selection": {
+      "summary": "{selected, plural, =0 {Hiçbir şey seçilmedi} one {# soru seçildi} other {# soru seçildi}} · filtrelerle {matching, plural, one {# eşleşme} other {# eşleşme}}",
+      "selectAll": "Eşleşen {count} sorunun tümünü seç",
+      "clear": "Seçimi temizle",
+      "hint": "Bir kutuya Shift ile tıklayarak o kutu ile son tıkladığınız kutu arasındaki her şeyi seçin ya da seçimini kaldırın.",
+      "approve": "{count, plural, one {# soru} other {# soru}} için onayları kaydet",
+      "select": "{id} sorusunu seç",
+      "page": "Sayfa {page} / {pages}",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "empty": "Bu filtrelerle eşleşen, inceleme bekleyen soru yok."
+    },
+    "columns": {
+      "select": "Seç",
+      "question": "Soru",
+      "exam": "Sınav",
+      "domain": "Alan",
+      "loaded": "Yüklendi",
+      "sent": "Gönderildi"
+    },
+    "notSent": "gönderilmedi",
+    "export": {
+      "heading": "Soruları hakemlere gönder",
+      "body": "Yukarıdaki filtrelerle eşleşen soruları tam metni, cevap anahtarı ve açıklamasıyla, hakem için boş bir decision sütunuyla CSV olarak indirin: yalnızca cevap anahtarını, açıklamayı, ifadeyi ve müfredata uygunluğu kontrol ettiyse \"approved\"; aksi halde bir notla \"changes\"; incelemediyse boş. Her dosya en fazla {max} soru içerir ve kaydedilir; böylece geri dönen dosya tam olarak gönderilenle karşılaştırılabilir.",
+      "button": "{count, plural, one {# sorunun} other {# sorunun}} CSV dosyasını indir",
+      "done": "{file} indirildi: {count, plural, one {# soru} other {# soru}}.",
+      "truncated": "Yalnızca ilk {max} soru dahil edildi. Kalanlar için \"Hiç gönderilmemiş\" filtresini seçip yeniden indirin."
+    },
+    "import": {
+      "heading": "Geri dönen bir CSV'yi içe aktar",
+      "body": "Bir hakemin geri gönderdiği dosyayı seçin. Dosya tarayıcınızda okunur; her satırdan yalnızca soru kimliği, sürüm, fingerprint, dışa aktarım kimliği, karar ve hakem e-postası gönderilir. Önce yazmadan bir deneme yapılır.",
+      "file": "Geri dönen CSV dosyası",
+      "read": "{file} dosyasından {rows, plural, one {# satır} other {# satır}} okundu.",
+      "tooMany": "Bu dosyada {rows} satır var. En fazla {max} satırlık dosyalara bölün.",
+      "headerProblem": {
+        "empty-file": "Dosya boş.",
+        "no-question-id-column": "Dosyada question_id sütunu yok.",
+        "no-decision-column": "Dosyada decision sütunu yok."
+      }
+    },
+    "record": {
+      "heading": "Kim karar verdi, nereden geliyor",
+      "reviewer": "Bu kararları veren hakem",
+      "chooseReviewer": "Bir hakem seçin",
+      "reviewerOption": "{name} — {credentials}",
+      "reviewerHint": "Onaylar bu kişinin adına kaydedilir ve öğrencilere onayladığı yetkinlikleriyle gösterilir. Siz onları giren kişi olarak kaydedilirsiniz.",
+      "source": "Kararlar nereden geliyor",
+      "sourceHint": "Örneğin: \"Prof. Rossi'nin 12 Kasım'da e-postayla gönderdiği onaylı liste\".",
+      "reviewedOn": "Hakemin karar tarihi",
+      "export": "Bu dosyanın yanıtladığı dışa aktarım",
+      "exportFromFile": "Dosyada yazdığı gibi",
+      "attest": "Hakem, onaylandı olarak işaretlediği her soru için cevap anahtarını, açıklamayı, ifadeyi ve müfredata uygunluğu kontrol ettiğini teyit etti.",
+      "check": "Yazmadan dene",
+      "checking": "Kontrol ediliyor…"
+    },
+    "plan": {
+      "heading": "Yazmadan deneme",
+      "willApprove": "{count, plural, =0 {Hiçbir soru onaylanmayacak.} one {# soru onaylanacak} other {# soru onaylanacak}}",
+      "alreadyApproved": "{count, plural, one {# zaten onaylı} other {# zaten onaylı}}",
+      "changed": "{count, plural, one {# soru gönderildikten sonra değişti: reddedildi} other {# soru gönderildikten sonra değişti: reddedildi}}",
+      "otherRefused": "{count, plural, one {# diğer satır reddedildi ya da dışarıda bırakıldı} other {# diğer satır reddedildi ya da dışarıda bırakıldı}}",
+      "breakdown": "Tüm satırlar, sonuca göre",
+      "outcome": "Sonuç",
+      "rows": "Satır",
+      "problemRows": "Onaylanmayan satırlar",
+      "line": "Satır",
+      "more": "Ve {count} tane daha.",
+      "approve": "{count, plural, one {# soruyu} other {# soruyu}} onayla"
+    },
+    "confirm": {
+      "title": "{count, plural, one {# onay} other {# onay}} kaydedilsin mi?",
+      "body": "{count, plural, one {# soru} other {# soru}}, \"{source}\" kaynağından, {reviewer} tarafından {date} tarihinde onaylanmış olarak, sizin girişinizle kaydedilecek. Öğrencilere hemen sunulurlar. Grubun tamamını daha sonra geri çekebilirsiniz.",
+      "yes": "{count, plural, one {# onayı} other {# onayı}} kaydet",
+      "cancel": "İptal"
+    },
+    "done": {
+      "title": "Kaydedildi",
+      "body": "{count, plural, one {# onay} other {# onay}} {batch} grubu olarak kaydedildi.",
+      "skipped": "{count, plural, one {# soru} other {# soru}} grup yazılırken başka biri tarafından değiştirildi ya da onaylandı ve dışarıda bırakıldı.",
+      "view": "Grubu görüntüle"
+    },
+    "outcomes": {
+      "will-approve": "Onaylanacak",
+      "already-approved": "Zaten onaylı",
+      "changed-since-sent": "Gönderildikten sonra değişti: hakem farklı bir metni onayladı",
+      "unverifiable": "Hangi metnin onaylandığını gösterecek sürüm, fingerprint ya da dışa aktarım yok",
+      "not-found": "Bu kimlikle soru yok",
+      "not-reviewable": "Taslak, karantinada ya da kullanımdan kalkmış",
+      "content-integrity": "Kayıtlı metin fingerprint ile uyuşmuyor",
+      "changes-requested": "Başka bir hakem değişiklik istedi: inceleme sayfasında karar verin",
+      "exam-not-authorised": "Hakem bu sınav için yetkili değil",
+      "own-work": "Hakem bu soruyu yazdı ya da düzenledi",
+      "other-reviewer": "Satır başka bir hakemi belirtiyor",
+      "not-approved": "Değişiklik için işaretlendi: notuyla birlikte inceleme sayfasında kaydedin",
+      "no-decision": "Karar yok",
+      "duplicate": "Önceki bir satırı tekrarlıyor",
+      "conflict": "Aynı sorunun başka bir satırıyla çelişiyor",
+      "unknown-export": "Kaydı olmayan bir dışa aktarımı belirtiyor",
+      "missing-question-id": "Soru kimliği eksik",
+      "bad-question-id": "Soru kimliği okunamıyor",
+      "bad-version": "Sürüm okunamıyor",
+      "bad-fingerprint": "Fingerprint okunamıyor",
+      "bad-export-id": "Dışa aktarım kimliği okunamıyor",
+      "unknown-decision": "Karar okunamıyor",
+      "bad-reviewer-email": "Hakem e-postası okunamıyor"
+    },
+    "errors": {
+      "generic": "Olmadı. Yeniden deneyin.",
+      "network": "Sunucuya ulaşılamadı. Hiçbir şey kaydedilmedi."
+    }
+  },
+  "history": {
+    "batch": "Hakem adına bir yönetici tarafından <link>{id} grubunda</link> girildi.",
+    "withdrawn": "O grup geri çekildi: bu onay artık sayılmıyor."
+  },
+  "batches": {
+    "meta": { "title": "Kaydedilen onay grupları" },
+    "breadcrumb": "Gruplar",
+    "title": "Kaydedilen onay grupları",
+    "lead": "Bir hakem adına girilen her onay grubu, en yeniden başlayarak, ve hakemlere gönderilen her dosya. Bir grubu geri çekmek tüm onaylarının hemen sayılmamasını sağlar; kayıt kalır.",
+    "empty": "Henüz hiçbir grup kaydedilmedi.",
+    "back": "Onayları toplu kaydet",
+    "columns": {
+      "recorded": "Kaydedildi",
+      "reviewer": "Hakem",
+      "source": "Kaynak",
+      "approvals": "Onaylar",
+      "status": "Durum"
+    },
+    "sourceCsv": "CSV: {name}",
+    "sourceSelection": "Seçim: {name}",
+    "active": "Geçerli",
+    "withdrawn": "{date} tarihinde geri çekildi",
+    "exportsHeading": "Hakemlere gönderilen dosyalar",
+    "exportsEmpty": "Henüz hiçbir dosya dışa aktarılmadı.",
+    "exportLine": "{file}: {count, plural, one {# soru} other {# soru}}, {date}",
+    "detail": {
+      "title": "Grup {id}",
+      "reviewer": "Kayıtlı hakem",
+      "reviewedOn": "Hakemin karar tarihi",
+      "recordedBy": "Giren",
+      "recordedAt": "Giriş zamanı",
+      "source": "Kaynak",
+      "sha": "Dosya SHA-256",
+      "export": "Yanıtladığı dışa aktarım",
+      "count": "Kaydedilen onaylar",
+      "withdrawnBy": "{who} tarafından {date} tarihinde geri çekildi: {reason}",
+      "questions": "Bu gruptaki sorular",
+      "questionsMore": "{total} sorudan ilk {shown} tanesi gösteriliyor."
+    },
+    "withdraw": {
+      "open": "Bu grubu geri çek",
+      "reason": "Neden geri çekiliyor",
+      "reasonHint": "En az 10 karakter. Grupla birlikte saklanır.",
+      "confirm": "{count, plural, one {# onayı} other {# onayı}} geri çek",
+      "cancel": "İptal"
+    }
+  }
+}

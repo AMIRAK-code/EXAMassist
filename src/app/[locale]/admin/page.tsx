@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getDb } from '@/lib/db';
 import { requireEditorial } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getHubForConfig } from '@/lib/exams/registry';
@@ -74,6 +75,7 @@ function isoDay(value: string): string {
 }
 
 export default async function AdminOverviewPage() {
+  const tLinks = await getTranslations('admin.links');
   // Redirects to sign-in when signed out (307), and 404s for a signed-in
   // learner, so the area's existence is never confirmed. See guards.ts.
   await requireEditorial('/admin');
@@ -166,6 +168,9 @@ export default async function AdminOverviewPage() {
         </li>
         <li>
           <Link href="/admin/reviewers">Reviewers (admins)</Link>
+        </li>
+        <li>
+          <Link href="/admin/review/batch">{tLinks('batch')}</Link>
         </li>
         <li>
           <Link href="/admin/funnel">Exam funnel: page views, free tests and purchases (admins)</Link>

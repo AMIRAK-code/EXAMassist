@@ -22,9 +22,12 @@ Sessions learners already started keep the question versions they pinned.
 
 ## What an approval is
 
-- A decision recorded by a person signed in to **their own account**, which an
-  administrator has authorised as a reviewer for that exam, and which they
-  have confirmed themselves.
+- A decision by a person an administrator has authorised as a reviewer for
+  that exam, and who has confirmed that authorisation themselves. They record
+  it signed in to **their own account**, or, for decisions they returned on a
+  CSV or a list, an administrator records it **in their name** in a named
+  batch (see below). Either way the reviewer is the decision's author; an
+  administrator is never recorded as the reviewer.
 - For **one question version and one content fingerprint**: a SHA-256 of the
   stem, instructions, choices, answer key, explanation, distractor notes,
   screen-reader text, taxonomy (section, domain, skill), difficulty and
@@ -95,6 +98,72 @@ the current text. If it says the content does not match its fingerprint, do
 not approve; tell the administrator (the row was changed outside the content
 workflow).
 
+## Recording decisions a reviewer returned (administrator)
+
+Reviewers hired by the team often review outside the site: we send them a CSV,
+they send it back with a decision on each row. **/admin/review/batch** records
+those decisions in bulk. Nothing on that page lets anyone approve a question a
+reviewer did not approve.
+
+1. **Send.** Filter the questions awaiting review (exam, section, domain,
+   whether and in which file they were already sent, the date the version was
+   loaded) and **Download CSV**. Each file holds at most 1,000 questions; to
+   send more, filter by *Never sent* and download again. The file has one row
+   per question: `export_id`, `question_id`, `version`, `fingerprint`, the exam
+   and taxonomy, the stimulus, instructions, stem, options, answer key,
+   explanation and distractor notes, then three empty columns for the
+   reviewer: `decision`, `reviewer_email`, `notes`. What each file contained
+   (question versions and fingerprints) is recorded in `review_exports` and
+   `review_export_items`.
+2. **Ask the reviewer** to write `approved` in `decision` only when they
+   checked all four of answer key, explanation, wording and syllabus
+   alignment; `changes` with a note otherwise; and to leave it blank when they
+   did not review that row. Other accepted spellings: yes/y/ok/sì/x/✓ and
+   no/n/reject. Anything else makes the row unreadable, and it is refused.
+   Excel may save the file with semicolons; that is read correctly.
+3. **Record.** Upload the returned file under *Import a returned CSV* (it is
+   read in the browser; only the id, version, fingerprint, export id, decision
+   and reviewer email of each row reach the server, so files of thousands of
+   rows stay under the hosting limits; split a file above 10,000 rows). Choose
+   the reviewer, confirm the date they decided and that they told you they
+   checked all four criteria on every approved row, and run the **dry run**.
+   It reports, row by row, what would be approved and why every other row
+   would not:
+   - *changed since it was sent*: the question's current version or
+     fingerprint differs from the file's, or from what the export recorded.
+     The reviewer approved a different text, so it is refused; send it again;
+   - *already approved*, *duplicate* (counted once), *contradicts another row*
+     (all such rows refused), *no decision*, *marked for changes* (record those
+     one at a time on the review page, with the reviewer's note), unreadable
+     values, unknown ids, drafts and quarantined questions;
+   - the reviewer rules of the review page: only exams the reviewer is
+     authorised for, never their own work, and never over another reviewer's
+     standing request for changes;
+   - *no version, fingerprint or export*: a row we cannot tie to a text is
+     refused.
+   Then **Approve**, and confirm the count. Approvals are written 200 to a
+   transaction; each chunk re-checks every question first, so one edited
+   meanwhile is skipped, not approved.
+4. **Or select.** For a list a reviewer returned some other way, select the
+   questions on the same page (select all matching the filters, or shift-click
+   ranges), **Record approvals**, describe where the decisions came from, and
+   go through the same dry run and confirmation.
+
+Each approval recorded this way has the reviewer's name and credentials, the
+exact version and fingerprint, the date they decided, the batch
+(`review_batches`: the file name and its SHA-256, or your description; the
+export it answered) and you as `recorded_by`; the audit log has the same.
+The question's review page says the approval was entered on the reviewer's
+behalf. **/admin/review/batches** lists every batch; a batch recorded in error
+(the wrong reviewer, the wrong file) is **withdrawn** there as a whole, with a
+reason: its approvals stop counting at once and stay in the ledger, marked by
+the withdrawn batch. You cannot record a batch in your own name, even if you
+are also an authorised reviewer; approve on the review page instead.
+
+The reviewer must still have their own account and have confirmed their
+credentials line, exactly as for reviewing on the site. That confirmation is
+their consent to being named.
+
 ## After a request for changes (editor)
 
 Edit the JSON file under `content/questions/`, increment `version` if the
@@ -110,7 +179,10 @@ state change in `audit_log`, shown on the question's review page.
 
 - `reviewers`: who may review, what they confirmed, who authorised them.
 - `question_reviews`: every decision, with the reviewer's name and credentials
-  copied as they stood.
+  copied as they stood, and for decisions entered on a reviewer's behalf, the
+  batch and the administrator who entered them.
+- `review_batches`, `review_exports`, `review_export_items`: batches recorded
+  on reviewers' behalf, and what was sent to reviewers.
 - A reviewer's account export includes both. Deleting the account removes the
   authorisation; recorded decisions are kept, unlinked from the account, as the
   audit trail of what was approved (see docs/HUMAN-APPROVAL-ROLLOUT.md for the

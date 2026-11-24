@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getDb } from '@/lib/db';
 import { requireReviewAccess } from '@/lib/auth/guards';
 import { EXAM_CONFIGS, getExamConfig, labelsFor } from '@/lib/exams/registry';
@@ -63,6 +64,7 @@ export default async function ReviewQueuePage({
   });
 
   const trail = [{ href: '/', label: 'Home' }, { href: '/admin', label: 'Administration' }, { label: 'Human review' }];
+  const tLinks = await getTranslations('admin.links');
 
   return (
     <Container size="wide">
@@ -76,6 +78,13 @@ export default async function ReviewQueuePage({
             : 'Human approval is optional for now: questions that passed the automated checks and the AI blind solve are served while they wait here. An approval is shown to learners with your name; a request for changes takes the question out of new sessions at once. None of the automated checks counts as human approval.'
         }
       />
+
+      {user.role === 'admin' ? (
+        <p className="-mt-4 mb-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <Link href="/admin/review/batch">{tLinks('batch')}</Link>
+          <Link href="/admin/review/batches">{tLinks('batches')}</Link>
+        </p>
+      ) : null}
 
       {reviewer ? (
         <Card className="mb-8" padding="lg">
