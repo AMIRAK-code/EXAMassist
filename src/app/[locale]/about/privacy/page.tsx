@@ -3,24 +3,24 @@ import { PAGE_DATES } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { absoluteUrl, shareImages, SITE, siteUrl } from '@/lib/site';
-import { Alert, Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
+import { Breadcrumbs, Card, Container, DefinitionList, PageHeader } from '@/components/ui';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/components/seo/json-ld';
 import { pageAlternates } from '@/i18n/alternates';
 import { LOCALE_INFO, localizePath, type Locale } from '@/i18n/locales';
 
 /**
- * Privacy notice — DRAFT.
+ * Privacy notice.
  *
- * This describes what the application genuinely does today, written so that a
- * lawyer can check it against the code rather than against a template. Every
- * point we cannot settle ourselves is listed at the bottom instead of being
- * papered over with boilerplate. The text lives in messages/<locale>/about.json
- * under "privacy"; the English version prevails, and the page says so.
+ * This describes what the application genuinely does today, so it can be
+ * checked against the code rather than against a template. Reviewed and made
+ * final on 2026-11-24 (the draft notice and the open questions were removed).
+ * The text lives in messages/<locale>/about.json under "privacy"; the English
+ * version prevails, and the page says so.
  */
 
 const PATH = '/about/privacy';
 
-/** Real dates: this draft was written on 2026-09-22, revised on 2026-10-05 for Premium, on 2026-10-07 for the daily totals and on 2026-10-27 for the on-site checkout and the language cookie. */
+/** Real dates: written on 2026-09-22, revised on 2026-10-05 for Premium, on 2026-10-07 for the daily totals and on 2026-10-27 for the on-site checkout and the language cookie, and made final on 2026-11-24. */
 const PUBLISHED = PAGE_DATES.privacy.published;
 const UPDATED = PAGE_DATES.privacy.updated;
 
@@ -70,22 +70,10 @@ const WHY = ['signedIn', 'language', 'history', 'fix', 'tutor', 'codes', 'google
 
 const SECURITY = ['passwords', 'sessions', 'codes', 'google', 'scoping', 'origin', 'rateLimitKeys'] as const;
 
+const SERVICES = ['email', 'payments', 'google', 'ai', 'retention'] as const;
+
 const CONTROLS = ['export', 'delete', 'signOut', 'guest', 'language'] as const;
 
-const OPEN_QUESTIONS = [
-  'controller',
-  'lawfulBasis',
-  'retention',
-  'deletion',
-  'minors',
-  'hosting',
-  'tutor',
-  'payments',
-  'cookies',
-  'rights',
-  'breach',
-  'trademark',
-] as const;
 
 const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>;
 
@@ -95,7 +83,7 @@ export default async function PrivacyPage({ params }: Props) {
   const t = await getTranslations('about');
   const format = await getFormatter();
   const title = t('privacy.meta.title');
-  const publishedLabel = format.dateTime(new Date(`${PUBLISHED}T00:00:00Z`), {
+  const updatedLabel = format.dateTime(new Date(`${UPDATED}T00:00:00Z`), {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -126,14 +114,6 @@ export default async function PrivacyPage({ params }: Props) {
       />
       <Breadcrumbs trail={trail} />
 
-      <Alert tone="caution" title={t('privacy.draftTitle')}>
-        <p>
-          {t.rich('privacy.draftBody', {
-            name: SITE.name,
-            link: (chunks) => <a href="#open-questions">{chunks}</a>,
-          })}
-        </p>
-      </Alert>
       <p className="mt-3 text-sm text-ink-subtle">{t('privacy.languageVersions')}</p>
 
       <div className="mt-8">
@@ -155,10 +135,10 @@ export default async function PrivacyPage({ params }: Props) {
       </div>
 
       <p className="mt-4 text-sm text-ink-subtle">
-        {t.rich('privacy.drafted', {
+        {t.rich('privacy.updated', {
           publisher: SITE.publisher,
-          date: publishedLabel,
-          time: (chunks) => <time dateTime={PUBLISHED}>{chunks}</time>,
+          date: updatedLabel,
+          time: (chunks) => <time dateTime={UPDATED}>{chunks}</time>,
         })}
       </p>
 
@@ -217,6 +197,20 @@ export default async function PrivacyPage({ params }: Props) {
           </div>
         </section>
 
+        <section aria-labelledby="services">
+          <h2 id="services" className="font-heading text-2xl font-semibold">
+            {t('privacy.services.heading')}
+          </h2>
+          <div className="prose-academic">
+            <p>{t('privacy.services.intro')}</p>
+            <ul>
+              {SERVICES.map((key) => (
+                <li key={key}>{t.rich(`privacy.services.${key}`, { strong })}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <section aria-labelledby="your-controls">
           <h2 id="your-controls" className="font-heading text-2xl font-semibold">
             {t('privacy.controls.heading')}
@@ -233,19 +227,6 @@ export default async function PrivacyPage({ params }: Props) {
           </p>
         </section>
 
-        <section aria-labelledby="open-questions">
-          <h2 id="open-questions" className="font-heading text-2xl font-semibold">
-            {t('privacy.openQuestions.heading')}
-          </h2>
-          <div className="prose-academic">
-            <p>{t('privacy.openQuestions.intro')}</p>
-            <ol>
-              {OPEN_QUESTIONS.map((key) => (
-                <li key={key}>{t(`privacy.openQuestions.${key}`)}</li>
-              ))}
-            </ol>
-          </div>
-        </section>
       </div>
     </Container>
   );

@@ -38,6 +38,8 @@ export const RATE_LIMITS = {
   // Batch review (exports, dry runs, imports, withdrawals), per administrator.
   // Each request may touch thousands of rows; a person does a few an hour.
   adminReviewBatch: { windowSeconds: 3600, max: 60 },
+  // Downloads of every account's email address, per administrator.
+  adminContactExport: { windowSeconds: 3600, max: 10 },
 } as const satisfies Record<string, RateLimitRule>;
 
 export interface RateLimitResult {

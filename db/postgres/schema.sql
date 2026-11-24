@@ -17,7 +17,9 @@ CREATE TABLE users (
   created_at        TEXT NOT NULL,
   updated_at        TEXT NOT NULL,
   deleted_at        TEXT
-, email_verified_at TEXT);
+, email_verified_at TEXT
+, account_email_consent_at TEXT
+, news_consent_at TEXT);
 
 CREATE TABLE sessions (
   id            TEXT PRIMARY KEY,                        -- SHA-256 of the cookie token
@@ -680,6 +682,7 @@ INSERT INTO _migrations (name, applied_at) VALUES
 ('017_checkout_sessions.sql', '2026-11-02T00:00:00.000Z'),
 ('018_google_sign_in.sql', '2026-11-03T00:00:00.000Z'),
 ('019_access_grants.sql', '2026-11-03T00:00:00.000Z'),
-('020_review_batches.sql', '2026-11-24T00:00:00.000Z');
+('020_review_batches.sql', '2026-11-24T00:00:00.000Z'),
+('021_email_consent.sql', '2026-11-24T00:00:00.000Z');
 ALTER TABLE examer._migrations ENABLE ROW LEVEL SECURITY;
 COMMIT;

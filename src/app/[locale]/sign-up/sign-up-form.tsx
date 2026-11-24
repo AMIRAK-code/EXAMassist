@@ -33,6 +33,9 @@ export function SignUpForm({
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [isMinor, setIsMinor] = useState(false);
+  const [accountEmailConsent, setAccountEmailConsent] = useState(false);
+  const [newsConsent, setNewsConsent] = useState(false);
+  const [consentMissing, setConsentMissing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -51,6 +54,11 @@ export function SignUpForm({
     setError(null);
     setPasswordError(null);
 
+    if (!accountEmailConsent) {
+      setConsentMissing(true);
+      return;
+    }
+
     // Say the obvious thing before spending a request on it.
     if (password.length < minPasswordLength) {
       setPasswordError(passwordMessage(t, 'too-short', minPasswordLength));
@@ -65,6 +73,9 @@ export function SignUpForm({
       displayName: displayName.trim() || undefined,
       isMinor,
       locale,
+      accountEmailConsent,
+      // Never for an account marked under 16; the server refuses it as well.
+      newsConsent: newsConsent && !isMinor,
     });
 
     if (!answer) {
@@ -214,6 +225,51 @@ export function SignUpForm({
           </div>
         </div>
       </div>
+
+      <fieldset className="space-y-3">
+        <legend className="mb-1 text-sm font-medium">{t('signUp.form.consentLegend')}</legend>
+        <label htmlFor={`${id}-consent-account`} className="flex min-h-11 cursor-pointer items-start gap-3 text-sm">
+          <input
+            id={`${id}-consent-account`}
+            name="accountEmailConsent"
+            type="checkbox"
+            required
+            checked={accountEmailConsent}
+            onChange={(event) => {
+              setAccountEmailConsent(event.target.checked);
+              setConsentMissing(false);
+            }}
+            aria-invalid={consentMissing || undefined}
+            aria-describedby={consentMissing ? `${id}-consent-error` : undefined}
+            className="mt-0.5 size-5 shrink-0 accent-[var(--color-accent)]"
+          />
+          <span>{t('signUp.form.consentAccount')}</span>
+        </label>
+        {consentMissing ? (
+          <p id={`${id}-consent-error`} role="alert" className="ps-8 text-sm text-negative">
+            {t('signUp.form.consentRequired')}
+          </p>
+        ) : null}
+        <label htmlFor={`${id}-consent-news`} className="flex min-h-11 cursor-pointer items-start gap-3 text-sm">
+          <input
+            id={`${id}-consent-news`}
+            name="newsConsent"
+            type="checkbox"
+            checked={newsConsent && !isMinor}
+            disabled={isMinor}
+            onChange={(event) => setNewsConsent(event.target.checked)}
+            aria-describedby={`${id}-consent-news-hint`}
+            className="mt-0.5 size-5 shrink-0 accent-[var(--color-accent)]"
+          />
+          <span>
+            {t('signUp.form.consentNews')}{' '}
+            <span className="text-ink-muted">{t('signUp.form.optional')}</span>
+          </span>
+        </label>
+        <p id={`${id}-consent-news-hint`} className="ps-8 text-sm text-ink-muted">
+          {isMinor ? t('signUp.form.consentNewsMinor') : t('signUp.form.consentNewsHint')}
+        </p>
+      </fieldset>
 
       <Button type="submit" size="lg" full loading={submitting}>
         {t('signUp.form.submit')}

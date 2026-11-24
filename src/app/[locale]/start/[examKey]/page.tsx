@@ -14,6 +14,7 @@ import { freeTestPath, pricingPath } from '@/lib/billing/config';
 import { examSaleStatus } from '@/lib/billing/availability';
 import { loadEntitlements } from '@/lib/billing/entitlements';
 import { PRICES } from '@/lib/billing/plans';
+import { sectionQuestionCount } from '@/lib/learning/readiness';
 import { Breadcrumbs, Container } from '@/components/ui';
 import { Onboarding, type OnboardingStep } from './onboarding';
 
@@ -61,14 +62,18 @@ export default async function StartPage({ params }: { params: Promise<{ locale: 
   const fullMock = config.capabilities.fullSimulation.available && config.blueprints.some((b) => b.mode === 'simulation');
   const hasDiagnostic = Boolean(getBlueprint(config, 'diagnostic'));
 
-  const sectionLine = (section: (typeof config.sections)[number]) =>
-    [
+  const sectionLine = (section: (typeof config.sections)[number]) => {
+    // The published count is free text ("50 (Mathematics 24, …)"); the plural
+    // message needs a number, or it prints "NaN questions".
+    const questions = sectionQuestionCount(section);
+    return [
       section.name,
-      section.officialQuestionCount ? t('start.intro.questions', { count: section.officialQuestionCount }) : null,
+      questions ? t('start.intro.questions', { count: questions }) : null,
       section.officialTimeMinutes ? t('start.intro.minutes', { count: section.officialTimeMinutes }) : null,
     ]
       .filter(Boolean)
       .join(' · ');
+  };
 
   const steps: OnboardingStep[] = [
     {

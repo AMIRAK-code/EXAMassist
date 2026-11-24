@@ -9,8 +9,8 @@ before relying on Vercel as a second host.
 | | Cloudflare (primary) | Vercel (secondary) |
 | --- | --- | --- |
 | Address | https://uniexamer.com | https://exa-massist.vercel.app |
-| Account | Worker `examer` in M.a.moein1380@gmail.com's Cloudflare account (holds the uniexamer.com zone) | Project `exa-massist` in amirhosseinakbari-7788s-projects |
-| Deploys | `npm run cf:deploy` from a clean checkout (README, "Cloudflare Workers") | Every push to `main` (`vercel.json`) |
+| Account | Worker `examer` in the owners' Cloudflare account (holds the uniexamer.com zone) | Project `exa-massist` in the owners' Vercel team |
+| Deploys | `npm run cf:deploy` from a clean checkout (docs/DEPLOYMENT.md, "Cloudflare Workers") | Every push to `main` (`vercel.json`) |
 | Plan | Workers Free | Hobby |
 | Database | Supabase via Hyperdrive `examer-db` (session pooler, port 5432) | Supabase via `DATABASE_URL` (transaction pooler, port 6543), **if** it has been set there; check |
 
@@ -47,7 +47,7 @@ A Vercel `DATABASE_URL` set before that date still points at the old copy.
 | Site broken after a deploy | Bad release | `npx wrangler rollback` (pick the previous version) |
 | Cloudflare itself down, or Paid is not an option | | Plan A below |
 
-**Workers Paid** ($5 a month, Workers & Pages → Plans in Moein's account) lifts
+**Workers Paid** ($5 a month, Workers & Pages → Plans in the owners' Cloudflare account) lifts
 CPU to 30 s per request and removes the daily cap. It needs no code change and
 is the answer to the first two rows. A single sign-in on Free worked on
 1 October 2026, so the CPU limit is not enforced on every request, but it can

@@ -3,7 +3,7 @@ import { PAGE_DATES } from '@/lib/content/page-dates';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { shareImages, SITE, siteUrl } from '@/lib/site';
-import { Alert, Breadcrumbs, Card, Container } from '@/components/ui';
+import { Breadcrumbs, Container } from '@/components/ui';
 import { JsonLd, breadcrumbSchema } from '@/components/seo/json-ld';
 import { pageAlternates } from '@/i18n/alternates';
 import { localizePath, type Locale } from '@/i18n/locales';
@@ -33,17 +33,6 @@ const LAST_REVIEWED = PAGE_DATES.terms.updated;
 
 const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>;
 
-const OPEN_QUESTIONS = [
-  'entity',
-  'liability',
-  'minors',
-  'consumer',
-  'vat',
-  'trademark',
-  'describing',
-  'training',
-  'accessibility',
-] as const;
 
 export default async function TermsPage({ params }: Props) {
   const { locale } = await params;
@@ -61,12 +50,9 @@ export default async function TermsPage({ params }: Props) {
 
       <h1 className="font-heading text-3xl font-semibold sm:text-4xl">{t('terms.title')}</h1>
 
-      <Alert tone="caution" title={t('terms.draftTitle')} className="mt-6">
-        <p>{t('terms.draftBody')}</p>
-      </Alert>
 
       <p className="mt-4 text-sm text-ink-subtle">
-        {t.rich('terms.drafted', {
+        {t.rich('terms.updated', {
           date: format.dateTime(new Date(`${LAST_REVIEWED}T00:00:00Z`), {
             day: 'numeric',
             month: 'long',
@@ -142,20 +128,6 @@ export default async function TermsPage({ params }: Props) {
         <p>{t('terms.changes.body')}</p>
       </div>
 
-      <Card className="mt-10 border-s-4 border-s-caution">
-        <h2 className="font-heading text-xl font-semibold">{t('terms.openQuestions.heading')}</h2>
-        <p className="mt-1 text-sm text-ink-muted">{t('terms.openQuestions.intro')}</p>
-        <ol className="mt-4 list-decimal space-y-2 ps-5 text-sm">
-          {OPEN_QUESTIONS.map((key) => (
-            <li key={key}>
-              {t.rich(`terms.openQuestions.${key}`, {
-                strong,
-                code: (chunks) => <code>{chunks}</code>,
-              })}
-            </li>
-          ))}
-        </ol>
-      </Card>
 
       <p className="mt-8 text-sm">
         <Link href="/about/privacy">{t('terms.privacyLink')}</Link>

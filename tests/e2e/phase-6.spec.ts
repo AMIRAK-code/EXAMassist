@@ -32,7 +32,7 @@ async function api(page: Page, method: string, url: string, body?: unknown): Pro
 async function signUp(page: Page, prefix = 'p6'): Promise<string> {
   await page.goto('/about/terms');
   const email = `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}@example.invalid`;
-  const result = await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn' });
+  const result = await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn', accountEmailConsent: true });
   expect(result.status).toBe(201);
   return email;
 }

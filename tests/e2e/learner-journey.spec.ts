@@ -192,7 +192,7 @@ test.describe('authorization', () => {
       const response = await fetch('/api/auth/sign-up', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn' }),
+        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn', accountEmailConsent: true }),
       });
       return response.status;
     }, email);
@@ -312,7 +312,7 @@ test.describe('readiness', () => {
       const response = await fetch('/api/auth/sign-up', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn' }),
+        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn', accountEmailConsent: true }),
       });
       return response.status;
     }, email);
@@ -370,7 +370,7 @@ test.describe('readiness', () => {
       await fetch('/api/auth/sign-up', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'examer' },
-        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn' }),
+        body: JSON.stringify({ email: address, password: 'a quiet harbour at dawn', accountEmailConsent: true }),
       });
     }, email);
 

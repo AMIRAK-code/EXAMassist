@@ -1,9 +1,13 @@
-# Examer
+# UniExamer
 
-A configuration-driven exam practice platform for university admission tests:
-the **Bocconi Online Test** (undergraduate and law), the **Digital SAT**, the
-**Enhanced ACT**, the **LSAT**, the **GMAT**, the **GRE**, the **Politecnico di
-Torino TIL-I and TIL-A**, and the **CISIA TOLC-E, TOLC-F and TOLC-I**.
+**[uniexamer.com](https://uniexamer.com)** — practice for university admission
+tests, with every exam rule checked against the test maker's own pages.
+
+UniExamer covers the **Bocconi Online Test** (bachelor, law and master's
+forms), the **Digital SAT**, the **Enhanced ACT**, the **LSAT**, the **GMAT**,
+the **GRE**, the **Politecnico di Torino TIL-I and TIL-A**, and the **CISIA
+TOLC-E, TOLC-F and TOLC-I**. The site is available in English, Italian,
+Turkish, Spanish and Polish; TOLC questions can also be practised in Italian.
 
 The organising principle is that the product does not say anything it cannot
 source. Every claim about how an exam works is verified against the test
@@ -11,7 +15,7 @@ maker's own published pages and carries the URL and the date it was checked;
 where a rule is not published, the application says so and switches off the
 feature that would have depended on it.
 
-`Examer` is a neutral working name held in one constant (`src/lib/site.ts`).
+The product name is held in one constant (`src/lib/site.ts`).
 
 ## Quick start
 
@@ -29,87 +33,8 @@ If dev fails with an `EINVAL ... readlink '.next/static/...'` error, delete the
 `.next` directory and start again: a production build left in place can trip the
 dev server on a synced filesystem such as OneDrive.
 
-### Supabase PostgreSQL on Vercel
-
-The server uses Supabase PostgreSQL when DATABASE_URL is set. Local development
-and tests can still use SQLite when DATABASE_URL is absent. Vercel requires
-DATABASE_URL and refuses to fall back to an ephemeral SQLite file.
-
-The application retains its existing accounts and session authentication. Its
-26 tables live in the private examer schema; the restricted examer_app login
-can read and write that schema only. Browser publishable keys cannot access it.
-Connections use the transaction pooler and verified TLS with the bundled public
-Supabase root certificate. No service-role key is required.
-
-Examer has its own Supabase project, "Examer" (eu-central-1), separate from any
-other app. To set up a fresh project, run db/postgres/schema.sql and then
-db/postgres/app-role.sql as the schema owner; the app connects as
-examer_app.<project-ref> through that project's pooler host, which is shown in
-the dashboard's Connect dialog.
-
-Configure DATABASE_URL and the other values in .env.example through Vercel
-environment variables before deploying the updated source. Keep credentials and
-project-specific migration notes in private local files, never in Git.
-
-Run npm run db:check for a PostgreSQL application smoke test that rolls back its
-test records. npm run supabase:check independently checks the public API URL/key.
-
-### Cloudflare Workers (uniexamer.com)
-
-The site also runs as the Worker `examer` in the Cloudflare account that holds
-the uniexamer.com zone, built with OpenNext (`wrangler.jsonc`,
-`open-next.config.ts`). The custom domains give it its DNS records and
-certificates. Until 27 October 2026 the site was at exam.assist365.app; that
-host and www.uniexamer.com stay attached only to redirect (301) to the same
-path on uniexamer.com (`next.config.ts`). A Worker cannot keep a connection pool between requests, so the
-database goes through the Hyperdrive config `examer-db`: the same examer_app
-login against the Supabase session pooler (port 5432), TLS verify-full with the
-Supabase root certificate, and query caching off. Each request opens a small
-pool against Hyperdrive.
-
-Public settings are the `vars` in `wrangler.jsonc`; `SESSION_SECRET` is a
-Worker secret (`npx wrangler secret put SESSION_SECRET`). OpenNext copies
-`.env` and `.env.local` into the Worker bundle, so `npm run cf:deploy` refuses
-to run next to them. Deploy from a clean checkout after `npx wrangler login`:
-
-    git worktree add ../examer-cf HEAD
-    cd ../examer-cf && npm ci --ignore-scripts && npm run cf:deploy
-
-On the Workers Free plan a request may use 10 ms of CPU. One scrypt password
-check takes about 50 ms on a desktop CPU, so sign-in, sign-up and password
-reset can fail there (error 1102) until the account is on Workers Paid.
-
-Rendering any page costs more than 10 ms too (a median of 28 ms, and 381 ms
-for the home page, measured in Workers Observability on 2026-10-27). So
-`cf:deploy` uploads twice. The first upload is a new version that receives no
-traffic (`wrangler versions upload`); the script fetches every public page, in
-every language, from that version's preview URL
-(`<version>-examer.<subdomain>.workers.dev`, enabled by `preview_urls` in
-`wrangler.jsonc`) and saves it into `.open-next/assets`. Only the second
-upload is deployed, so visitors move straight to a version that serves those
-files without running the Worker at all (`scripts/snapshot-pages.ts`,
-`src/lib/seo/static-pages.ts`). Until 29 October 2026 the first upload was
-deployed at once, and visitors got error 1102 for as long as the snapshot ran. `/pricing` and
-everything behind sign-in stay dynamic. Saved pages never pass through
-`src/proxy.ts`, so a small inline script makes the same language choice on
-them (cookie, then browser languages). The saved pages change only when you
-deploy, so deploy again after publishing questions straight to the database.
-
-Fetching about 150 pages in a row keeps the Worker over the Free plan's CPU
-limit for minutes at a time (pages answer 503), so the snapshot pauses between
-pages and retries each one for about nine minutes. A full snapshot takes 5 to
-15 minutes, and only the deploy waits for it. If it still gives up, nothing is
-deployed and visitors stay on the current version; run `npm run cf:snapshot` in
-the same folder to carry on with the same build and its preview URL. It keeps the
-pages already saved, then deploys.
-
-Static files are answered for any hostname before the Worker's own redirects
-run, so the snapshot step needs two Single Redirects in Cloudflare (Rules →
-Redirect Rules): `www.uniexamer.com/*` to `https://uniexamer.com/${1}` in the
-uniexamer.com zone, and hostname `exam.assist365.app` to
-`concat("https://uniexamer.com", http.request.uri.path)` in the assist365.app
-zone, both 301 and keeping the query string. Without them `cf:deploy` stops
-before deploying.
+Local development and tests use SQLite. Production uses PostgreSQL; hosting and
+deployment are described in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 
 ### Commands
 
@@ -133,16 +58,18 @@ before deploying.
   source-backed records in `content/exam-specs/_raw/`. Start with
   [`docs/research/README.md`](docs/research/README.md) and the
   [discrepancy register](docs/research/DISCREPANCY-REGISTER.md).
-- **Twelve versioned exam configurations** — `src/lib/exams/configs/`. Sections,
+- **Versioned exam configurations** — `src/lib/exams/configs/`. Sections,
   timing, navigation rules, calculator policy, scoring, official taxonomy, and
   an explicit list of what could not be verified.
 - **A configuration-driven assessment engine** — `src/lib/assessment/`. Pure
   functions for scoring, navigation, timing and selection, with no exam
   hardcoded anywhere.
 - **An original question bank** — `content/questions/`, every item independently
-  solved by a second reviewer before publication.
+  solved by a second reviewer before publication. Translations of questions are
+  served only after an independent check.
 - **Public educational pages** — exam hubs, format and scoring guides, and
-  editorial guides, server-rendered with canonical URLs and structured data.
+  editorial guides, server-rendered with canonical URLs, language alternates
+  and structured data.
 - **Paid plans** — a Single Exam Pass (€23.99 once, one exam for six months)
   and Plus (€7.99/month or €59.99/year, every exam) through Stripe, with
   Premium (adds the AI tutor) announced but not sold; the pricing page,
@@ -151,7 +78,6 @@ before deploying.
   free. Off unless `BILLING_ENFORCED=true`. Plans, prices and the
   feature matrix are in `src/lib/billing/plans.ts`; setup, webhooks and the
   go-live checklist in [`docs/BILLING.md`](docs/BILLING.md).
-
 - **Bocconi preparation and search** — the Bocconi landing page, its
   supporting guides, the funnel counts and the Search Console runbook are in
   [`docs/BOCCONI-SEARCH.md`](docs/BOCCONI-SEARCH.md); human review, which every
@@ -159,7 +85,7 @@ before deploying.
   and its rollout in [`docs/HUMAN-APPROVAL-ROLLOUT.md`](docs/HUMAN-APPROVAL-ROLLOUT.md); Search Console setup and the indexing
   audit are in [`docs/GOOGLE_SEARCH_CONSOLE_SETUP.md`](docs/GOOGLE_SEARCH_CONSOLE_SETUP.md).
 - **Search and AI visibility** — robots policy, share images, llms.txt,
-  IndexNow, what to run after a deploy and what needs the owners' accounts:
+  IndexNow and what to run after a deploy:
   [`docs/SEARCH-AND-AI-VISIBILITY.md`](docs/SEARCH-AND-AI-VISIBILITY.md).
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design and
@@ -182,7 +108,7 @@ what is missing.
 
 ## Independence
 
-Not affiliated with, endorsed by or accredited by College Board, ACT, LSAC,
-GMAC, ETS, Università Bocconi, Politecnico di Torino or CISIA. Exam names are
-used descriptively to identify
-the exam a guide concerns.
+UniExamer is an independent study resource. It is not affiliated with,
+endorsed by or accredited by College Board, ACT, LSAC, GMAC, ETS, Università
+Bocconi, Politecnico di Torino or CISIA. Exam names are used descriptively to
+identify the exam a guide concerns.
