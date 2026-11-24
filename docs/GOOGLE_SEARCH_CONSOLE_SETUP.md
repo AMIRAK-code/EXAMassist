@@ -61,7 +61,7 @@ curl -s https://uniexamer.com/ | grep -o '<meta name="robots"[^>]*>\|<link rel="
 
 1. Search Console → *Add property* → *Domain* → enter `uniexamer.com`.
 2. Copy the `google-site-verification=…` TXT value.
-3. In the Cloudflare account that holds uniexamer.com (Moein's), DNS → add a
+3. In the Cloudflare account that holds uniexamer.com (the owners'), DNS → add a
    **TXT** record named `@` with that value.
 4. Back in Search Console → *Verify*. DNS can take a few minutes. Keep the
    record: removing it unverifies the property.

@@ -217,7 +217,7 @@ Snippet controls (https://developers.google.com/search/docs/crawling-indexing/ro
 - A Domain property needs DNS verification only.
 - A URL-prefix property (`https://exam.assist365.app/`) covers only that prefix and protocol, and accepts other verification methods.
 - Two options for us:
-  - A Domain property for `exam.assist365.app`, verified with a DNS TXT record on that host name in the Cloudflare zone of whoever holds assist365.app (Moein's account).
+  - A Domain property for `exam.assist365.app`, verified with a DNS TXT record on that host name in the Cloudflare zone of whoever holds assist365.app (the owners' account).
   - A URL-prefix property verified by HTML file or meta tag. This needs no DNS access.
 
 ### Verification methods: https://support.google.com/webmasters/answer/9008080

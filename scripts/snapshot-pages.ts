@@ -89,7 +89,7 @@ export async function assertHostsRedirect(site: string, hosts: readonly string[]
   if (missing.length > 0) {
     throw new Error(
       `${missing.join(' and ')} must redirect to ${site} in Cloudflare (Rules → Redirect Rules) before public ` +
-        'pages are served as files, or those hosts would serve copies of them. See README, "Cloudflare Workers".',
+        'pages are served as files, or those hosts would serve copies of them. See docs/DEPLOYMENT.md, "Cloudflare Workers".',
     );
   }
 }
