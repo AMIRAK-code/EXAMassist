@@ -40,7 +40,7 @@ sources.
 
 Done on 2026-10-27 in the owners' browser sessions, unless marked otherwise.
 
-Cloudflare, uniexamer.com zone (Moein's account):
+Cloudflare, uniexamer.com zone (the owners' account):
 
 1. **SSL/TLS → Edge Certificates → Always Use HTTPS: on.** `http://` now
    answers 301 to the same `https://` address. Before, it served pages over
@@ -58,7 +58,7 @@ Cloudflare, uniexamer.com zone (Moein's account):
 5. **Workers plan: still Free** at the end of the day. See the 1102 section
    below: the failures come and go, and Workers Paid is the fix.
 
-Google Search Console, signed in as farazhaghgoo1@gmail.com
+Google Search Console, signed in with the owners' Google account
 ([`GOOGLE_SEARCH_CONSOLE_SETUP.md`](GOOGLE_SEARCH_CONSOLE_SETUP.md)):
 
 6. **Domain property `uniexamer.com`, verified** by the TXT record `@`
@@ -91,7 +91,7 @@ Bing Webmaster Tools, same Google sign-in:
 12. **Workers stays on Free**, the owner's choice. Public pages are served as
     static files instead (next section).
 
-13. **Two Single Redirects** (README, "Cloudflare Workers") since 2026-10-27:
+13. **Two Single Redirects** (docs/DEPLOYMENT.md, "Cloudflare Workers") since 2026-10-27:
     `www.uniexamer.com to uniexamer.com` in the uniexamer.com zone and
     `exam.assist365.app to uniexamer.com` in the assist365.app zone. They
     answer before the Worker's static files, files included (checked with

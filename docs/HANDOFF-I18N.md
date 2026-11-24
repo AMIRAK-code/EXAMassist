@@ -48,7 +48,7 @@ items 1 and 2 were finished in a local session on 28 October 2026.
    - Polish: the after-test debrief is "Omówienie po teście" in `player`/`billing` but "Przewodnik po teście" in `results`; align them.
 5. **Merge to `main`** through a PR once green.
 6. **Production database:** apply `db/postgres/012_stripe_subscriptions.sql`, then `db/postgres/013_content_translations.sql`, to the Supabase project behind Hyperdrive `examer-db`. The code on `main` expects both (the notebook reads `attempts.content_locale`), so do this with the deploy, in the order docs/BILLING.md gives.
-7. **Deploy to Cloudflare:** `npx wrangler login`, then deploy from a clean checkout (README, "Cloudflare Workers"):
+7. **Deploy to Cloudflare:** `npx wrangler login`, then deploy from a clean checkout (docs/DEPLOYMENT.md, "Cloudflare Workers"):
    ```
    git worktree add ../examer-cf origin/main
    cd ../examer-cf && npm ci --ignore-scripts && npm run cf:deploy

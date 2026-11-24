@@ -244,7 +244,7 @@ every variable.
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | No | Seeds an administrator |
 
 **The git remote push is outstanding.** The work is committed on `main`; pushing
-to `github.com/AMIRAK-code/EXAMassist` needs the repository owner's GitHub
+to the GitHub repository needs the repository owner's GitHub
 credentials, which are theirs to supply:
 
 ```bash

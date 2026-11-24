@@ -1,4 +1,4 @@
-Faraz:
+Product owner:
 You are the lead product architect, engineering manager, and multi-agent coordinator responsible for building a web-based exam practice platform.
 Your task is to coordinate specialized agents, implement the product, verify it, and deliver a working application. Continue beyond planning into implementation and testing.
 1. Product objective
@@ -62,7 +62,7 @@ Expected verification evidence.
 Blockers and handoff requirements.
 Maintain a shared task board with task ID, owner, dependencies, status, affected files, and acceptance evidence.
 
-Faraz:
+Product owner:
 Parallelize independent work. Avoid simultaneous edits to shared files. Assign one owner to shared schemas, configuration, and migrations. Have agents propose changes to shared contracts before integration.
 Require independent review of scoring logic and published question answers. An agent’s self-reported completion does not constitute acceptance.
 4. Verify the exam brief before implementation
@@ -136,7 +136,7 @@ Our educational approximation.
 Features not yet implemented.
 Do not claim to reproduce proprietary SAT, GMAT, or GRE scoring algorithms. Any estimated scaled score must have a documented defensible methodology and clear limitations. Otherwise, report raw accuracy, timing, and skill performance.
 
-Faraz:
+Product owner:
 Do not fabricate percentiles, calibrated ability estimates, or official score equivalence.
 6. Essential learner experience
 Implement these connected journeys:
@@ -222,7 +222,7 @@ Avoid sending unnecessary personal information to model providers.
 Provide a way to flag incorrect explanations.
 Do not make external AI availability a dependency for core practice functionality.
 
-Faraz:
+Product owner:
 9. Traditional SEO and AI-search discoverability
 Make public educational content useful, crawlable, understandable, and easy to cite.
 Implement:
@@ -293,7 +293,7 @@ The release must demonstrate:
 All six exam hubs have verified, version-aware information.
 Each exam supports a working practice session using reviewed original questions.
 
-Faraz:
+Product owner:
 Answers save and results calculate correctly.
 Attempts survive refresh without losing order, answers, or remaining time.
 Users cannot access another user’s private data.
