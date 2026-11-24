@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
+import { getEmailConsent } from '@/lib/account/email-consent';
 import { SITE } from '@/lib/site';
 import { getCustomerId, listPasses, listSubscriptions } from '@/lib/billing/store';
 import { listAccessGrantsOrNone } from '@/lib/billing/access-grants';
@@ -66,6 +67,8 @@ export async function GET() {
          FROM users WHERE id = ? AND deleted_at IS NULL`,
       )
       .get(user.id)) as Omit<UserRow, 'password_hash' | 'deleted_at'> | undefined;
+
+    const emailConsent = await getEmailConsent(db, user.id);
 
     if (!account) {
       return toErrorResponse(new Error('The signed-in account could not be read.'));
@@ -245,6 +248,9 @@ export async function GET() {
         declaredUnder16: account.is_minor === 1,
         // Read from the session's own row, which has it whenever the column exists.
         emailConfirmedAt: user.emailVerifiedAt,
+        // What you agreed to about email (migration 021): account emails, and news if you opted in.
+        accountEmailConsentAt: emailConsent.accountEmailConsentAt,
+        newsConsentAt: emailConsent.newsConsentAt,
         createdAt: account.created_at,
         updatedAt: account.updated_at,
       },

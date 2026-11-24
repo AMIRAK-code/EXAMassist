@@ -4,6 +4,7 @@ import { getDb } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth/guards';
 import { accountReport, type Split } from '@/lib/analytics/accounts';
 import { listUsers } from '@/lib/admin/users';
+import { ContactsExport } from './contacts-export';
 import { Badge, Breadcrumbs, Button, ButtonLink, Card, Container, PageHeader, Stat, fieldClass } from '@/components/ui';
 
 /**
@@ -71,6 +72,11 @@ export default async function UsersPage({ searchParams }: { searchParams: Promis
           </Card>
         ))}
       </ul>
+
+      <h2 id="contacts" className="mt-10 font-heading text-xl font-semibold">Email contacts for Brevo</h2>
+      <Card className="mt-3">
+        <ContactsExport />
+      </Card>
 
       <h2 id="people" className="mt-10 font-heading text-xl font-semibold">People</h2>
       <form method="get" action="/admin/users#people" className="mt-3 flex flex-wrap items-end gap-3">

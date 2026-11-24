@@ -40,7 +40,7 @@ async function api(page: Page, method: string, url: string, body?: unknown): Pro
 async function openSession(page: Page, blueprintId = 'practice', examKey = 'lsat'): Promise<string> {
   await page.goto('/about/terms');
   const email = `tutor-${Date.now()}-${Math.random().toString(36).slice(2, 7)}@example.invalid`;
-  expect((await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn' })).status).toBe(201);
+  expect((await api(page, 'POST', '/api/auth/sign-up', { email, password: 'a quiet harbour at dawn', accountEmailConsent: true })).status).toBe(201);
   const started = await api(page, 'POST', '/api/attempts', { examKey, blueprintId });
   expect([200, 201]).toContain(started.status);
   const attemptId = started.data.attemptId as string;
