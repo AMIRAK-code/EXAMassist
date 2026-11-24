@@ -219,17 +219,15 @@
   },
   "privacy": {
     "meta": {
-      "title": "Informacja o prywatności (wersja robocza)",
-      "description": "Robocza informacja o prywatności: dwa pliki cookie (sesja i język), bez reklam i zewnętrznej analityki, płatności przez Stripe, eksport lub usunięcie danych."
+      "title": "Informacja o prywatności",
+      "description": "Informacja o prywatności: dwa pliki cookie (sesja i język), bez reklam i zewnętrznej analityki, płatności przez Stripe, eksport lub usunięcie danych."
     },
     "breadcrumb": "Informacja o prywatności",
-    "draftTitle": "Wersja robocza — przygotowana do weryfikacji, jeszcze niesprawdzona przez prawnika",
-    "draftBody": "To robocza wersja przygotowana przez zespół {name}, która opisuje, co aplikacja faktycznie robi. Nie została sprawdzona ani zatwierdzona przez prawnika, nie stanowi porady prawnej i nie jest umową. Otwarte kwestie, których nie możemy rozstrzygnąć sami, wymieniamy w całości na <link>końcu strony</link>, zamiast wypełniać je szablonowymi formułkami. Polska wersja jest tłumaczeniem; w razie rozbieżności rozstrzygająca jest wersja angielska.",
     "languageVersions": "Ta informacja jest publikowana w języku angielskim, włoskim, tureckim, hiszpańskim i polskim. W razie rozbieżności między wersjami językowymi rozstrzygająca jest wersja angielska.",
     "title": "Informacja o prywatności",
     "lead": "Co ta aplikacja przechowuje, dlaczego to przechowuje i czego celowo nigdy nie zbiera.",
     "inShort": "Możesz korzystać z serwisu {name}, nie podając nam niczego: ćwiczenie bez konta tworzy rekord gościa, który nie zawiera żadnych danych osobowych. Jeśli założysz konto, przechowujemy Twój adres e-mail, solony skrót (hash) Twojego hasła, ustawione przez Ciebie ustawienia nauki i historię ćwiczeń. Ustawiamy dwa własne pliki cookie: jeden służy wyłącznie do utrzymania zalogowania, a drugi wyłącznie zapamiętuje wybrany język (Stripe dodaje własne pliki cookie zapobiegające oszustwom tylko tam, gdzie wpisujesz dane karty). Nie ma reklam ani zewnętrznej analityki. Jeśli kupisz plan, Stripe przyjmuje płatność we własnych, bezpiecznych polach karty, a my przechowujemy tylko informację, jakie plany masz. Możesz wyeksportować lub usunąć swoje dane na <link>stronie konta</link>. Logowanie przez Google jest opcjonalne: jeśli z niego skorzystasz, Google przekaże nam Twój adres e-mail oraz imię i nazwisko, a trzeci nasz plik cookie istnieje tylko przez kilka minut trwania logowania.",
-    "drafted": "Opracowanie: {publisher} · <time>{date}</time>",
+    "updated": "Publikuje: {publisher} · ostatnia aktualizacja <time>{date}</time>",
     "hold": {
       "heading": "1. Co przechowujemy",
       "session": {
@@ -305,7 +303,7 @@
       "language": "<strong>Aby wyświetlać serwis w Twoim języku.</strong> To jedyne zadanie pliku cookie języka.",
       "history": "<strong>Aby udostępnić Ci Twoją historię ćwiczeń.</strong> Wyniki, podział według tematów i funkcja „nie pokazuj mi tego pytania przez miesiąc” wymagają istnienia historii.",
       "fix": "<strong>Aby poprawiać złe pytania.</strong> Zgłoszenie mówi naszym redaktorom, które pytanie i którą wersję sprawdzić.",
-      "tutor": "<strong>Aby odpowiedzieć na Twoją prośbę do tutora AI.</strong> Tylko po naciśnięciu przycisku i tylko z treścią pytania oraz danymi o wynikach opisanymi w otwartych kwestiach poniżej.",
+      "tutor": "<strong>Aby odpowiedzieć na Twoją prośbę do tutora AI.</strong> Tylko po naciśnięciu przycisku i tylko z treścią pytania oraz danymi o wynikach opisanymi poniżej w części „Usługi, z których korzystamy”.",
       "codes": "<strong>Aby wysyłać kody, o które prosisz.</strong> Kod logowania, kod resetu hasła albo kod potwierdzający Twój adres przy zakładaniu konta.",
       "google": "<strong>Aby umożliwić Ci logowanie przez Google, jeśli je wybierzesz.</strong> To, co przesyła Google, służy wyłącznie do znalezienia lub utworzenia Twojego konta i potwierdzenia Twojego adresu.",
       "abuse": "<strong>Aby zapobiegać nadużyciom.</strong> Próby logowania, rejestracje, tworzenie kont gościa, rozpoczynanie podejść, zapisywanie odpowiedzi, kody e-mail i zgłoszenia pytań podlegają limitom.",
@@ -321,43 +319,34 @@
       "origin": "Zapytania zmieniające stan są sprawdzane pod kątem pochodzenia z własnej domeny serwisu, niezależnie od ustawienia SameSite pliku cookie.",
       "rateLimitKeys": "Klucze limitów zapytań są haszowane, więc surowe adresy IP nie są przechowywane."
     },
+    "services": {
+      "heading": "Usługi, z których korzystamy",
+      "intro": "Te zewnętrzne usługi otrzymują dane wyłącznie w opisanych tu celach.",
+      "email": "<strong>Brevo (e-mail).</strong> Dostarcza jednorazowe kody logowania. Przy każdym e-mailu z kodem otrzymuje adres odbiorcy, temat i wiadomość w zwykłym tekście, która zawiera kod.",
+      "payments": "<strong>Stripe (płatności).</strong> Gdy kupujesz plan, tworzymy klienta Stripe z adresem e-mail Twojego konta, nazwą wyświetlaną (jeśli jest ustawiona) i identyfikatorem konta, a Stripe zbiera dane karty we własnych bezpiecznych polach na naszej stronie płatności. Stripe.js ładuje się z js.stripe.com wyłącznie na stronach płatności i konta.",
+      "google": "<strong>Google (opcjonalne logowanie).</strong> Jeśli zdecydujesz się zalogować przez Google, Google dowiaduje się, że logujesz się do tego serwisu, i przesyła nam Twój adres e-mail oraz imię i nazwisko.",
+      "ai": "<strong>Anthropic (opcjonalny tutor AI).</strong> Gdy naciśniesz przycisk tutora, serwer wysyła do Anthropic przez jego API pytanie, odpowiedzi do wyboru, nasze sprawdzone wyjaśnienie, wybraną przez Ciebie odpowiedź oraz – w przypadku omówienia po teście – zbiorcze wyniki sesji. Nie są wysyłane imię i nazwisko, adres e-mail, identyfikator konta ani wpisany przez Ciebie tekst.",
+      "retention": "<strong>Jak długo przechowujemy dane.</strong> Sesje wygasają po 30 dniach (7 dla gościa), okna limitów żądań są usuwane po 24 godzinach, kody e-mail wygasają zgodnie z opisem powyżej, a plik cookie języka jest przechowywany w przeglądarce przez rok. Konto i historia ćwiczeń są przechowywane do czasu usunięcia konta."
+    },
     "controls": {
       "heading": "5. Co możesz zrobić",
       "export": "<strong>Eksport.</strong> Pobierz wszystkie dane powiązane z Twoim kontem na stronie konta.",
-      "delete": "<strong>Usunięcie.</strong> Usuń swoje konto w tym samym miejscu. Zobacz otwartą kwestię poniżej, dotyczącą tego, co usunięcie powinno oznaczać od strony technicznej.",
+      "delete": "<strong>Usunięcie.</strong> Usuń swoje konto w tym samym miejscu. Konto zostaje oznaczone jako usunięte: przestaje działać i nie pojawia się już nigdzie w serwisie.",
       "signOut": "<strong>Wylogowanie wszędzie.</strong> Wylogowanie usuwa sesję; reset hasła usuwa wszystkie sesje konta.",
       "guest": "<strong>Pozostań gościem.</strong> Jeśli nigdy się nie zarejestrujesz, nie ma żadnych danych osobowych do eksportu ani usunięcia — wyczyszczenie pliku cookie sesji kończy sesję.",
       "language": "<strong>Zmień lub wyczyść język.</strong> W każdej chwili wybierz inny język z menu języków albo usuń plik cookie języka w przeglądarce; serwis wyświetli się wtedy po angielsku lub w języku, którego żąda Twoja przeglądarka.",
       "accountLink": "Przejdź do strony konta →"
-    },
-    "openQuestions": {
-      "heading": "Otwarte kwestie do weryfikacji prawnej",
-      "intro": "To punkty, których ta wersja robocza nie może rozstrzygnąć sama. Wymieniamy je, zamiast zgadywać, bo pewnie brzmiąca odpowiedź byłaby tu gorsza niż przyznanie się do luki.",
-      "controller": "Administrator danych: jaki podmiot prawny prowadzi ten serwis, w jakiej jurysdykcji i jaki powinien być adres kontaktowy dla wniosków dotyczących prywatności. Nic z poniższych punktów nie może zostać ostatecznie ustalone, dopóki ta kwestia nie zostanie rozstrzygnięta.",
-      "lawfulBasis": "Podstawa prawna każdego celu przetwarzania na gruncie RODO (GDPR) — najprawdopodobniej umowa w przypadku konta i historii ćwiczeń oraz prawnie uzasadniony interes w przypadku limitów zapytań i zapobiegania nadużyciom — i czy ta analiza wytrzyma weryfikację.",
-      "retention": "Okresy przechowywania. Obecnie nic nie wygasa poza sesjami (30 dni lub 7 dla gościa), przedziałami limitów zapytań (usuwanymi po 24 godzinach), kodami e-mail (opisanymi wyżej) i plikiem cookie języka (jeden rok, wyłącznie w Twojej przeglądarce). To, jak długo należy przechowywać nieaktywne konto gościa, historię ćwiczeń i rozpatrzone zgłoszenie pytania, wymaga decyzji, a następnie wdrożenia.",
-      "deletion": "Czy usunięcie powinno być trwałe, czy logiczne, tak jak obecnie. Dziś usunięcie oznacza konto jako usunięte, więc przestaje ono być rozpoznawane i nigdzie się nie pojawia; co dzieje się z powiązanymi rekordami podejść i po jakim czasie — to otwarta decyzja.",
-      "minors": "Czy użytkownicy poniżej 16 roku życia potrzebują możliwej do zweryfikowania zgody rodzica w każdej jurysdykcji, w której działamy, i czy samodzielnie zadeklarowana informacja jest w ogóle wystarczająca. Informacja o wieku istnieje w kodzie i jest deklarowana samodzielnie; nie weryfikujemy jej i obecnie nie prosimy o zgodę.",
-      "hosting": "Gdzie dane są hostowane, czy dochodzi do międzynarodowego przekazywania danych oraz co powinny zawierać mechanizm przekazywania i lista podmiotów przetwarzających. Aplikacja korzysta z jednej bazy danych. Zaangażowane są cztery zewnętrzne usługi: opcjonalny tutor AI, opisany w następnym punkcie; operator płatności Stripe, opisany po nim; dostawca poczty e-mail Brevo, który dostarcza jednorazowe kody; oraz, wyłącznie dla osób, które go wybiorą, Google do logowania. Przy każdym e-mailu z kodem Brevo otrzymuje adres odbiorcy, temat i wiadomość w formie zwykłego tekstu, która zawiera kod. Do rozstrzygnięcia w przypadku Brevo: jego status jako podmiotu przetwarzającego i warunki przetwarzania danych dla konta, przechowywanie treści wiadomości i dzienników doręczeń oraz miejsce, w którym przetwarza dane. Gdy osoba ucząca się wybierze logowanie przez Google, Google dowiaduje się, że loguje się ona do tego serwisu, i przesyła nam opisane wyżej dane. Do rozstrzygnięcia w przypadku Google: czy działa jako niezależny administrator w zakresie własnej usługi logowania (nasze stanowisko) oraz warunki klienta OAuth, w ramach którego serwis jest zarejestrowany.",
-      "tutor": "Tutor AI. Gdy uczący się naciśnie przycisk tutora, serwer wysyła przez API do dostawcy modelu (Anthropic) pytanie, odpowiedzi do wyboru, nasze sprawdzone wyjaśnienie, odpowiedź wybraną przez uczącego się oraz — w przypadku omówienia po teście — zbiorcze wyniki sesji. Nie są wysyłane imię, adres e-mail, identyfikator konta ani żaden swobodny tekst wpisany przez uczącego się. Do rozstrzygnięcia: status dostawcy jako podmiotu przetwarzającego i warunki przetwarzania danych, na których wydano klucz API; przechowywanie i wykorzystywanie treści zapytań przez dostawcę na tych warunkach, czego nie zweryfikowaliśmy i dlatego tu nie opisujemy; mechanizm międzynarodowego przekazywania danych, jeśli dostawca przetwarza je poza jurysdykcją uczącego się; czy dane o wynikach są danymi osobowymi po oddzieleniu od konta; oraz czy użytkownicy poniżej 16 roku życia mogą korzystać z tutora bez zgody rodzica. Dopóki te kwestie nie zostaną rozstrzygnięte, operator może pozostawić tutora wyłączonego, a serwis działa w pełni bez niego.",
-      "payments": "Płatności. Gdy uczący się kupuje plan, serwer tworzy klienta w Stripe z adresem e-mail konta, nazwą wyświetlaną (jeśli ją ustawiono) i identyfikatorem konta, a Stripe pobiera dane karty we własnych, bezpiecznych polach osadzonych na naszej stronie płatności (Stripe.js ładuje się z js.stripe.com wyłącznie na stronach płatności i konta). Do rozstrzygnięcia: czy pliki cookie Stripe zapobiegające oszustwom, ustawiane tylko na stronach, na których wpisuje się dane karty, są niezbędne (nasze stanowisko), czy wymagają zgody; czy Stripe działa jako nasz podmiot przetwarzający, czy jako niezależny administrator danych płatniczych; jak długo trzeba przechowywać dokumentację rozliczeń do celów podatkowych i księgowych, co może mieć pierwszeństwo przed wnioskiem o usunięcie tych danych; mechanizm międzynarodowego przekazywania danych; oraz czy osoby niepełnoletnie mogą kupić plan.",
-      "cookies": "Czy plik cookie sesji jest niezbędny w każdej jurysdykcji, w której działamy — naszym zdaniem tak, dlatego nie wyświetlamy banera zgody — i czy plik cookie języka, który jedynie zapamiętuje wybrany język, jest zwolniony z wymogu zgody jako preferencja interfejsu przez cały roczny okres ważności (również nasze stanowisko); oraz potwierdzenie, że nic innego w serwisie nie wywołuje wymogu uzyskania zgody.",
-      "rights": "Procedura i terminy rozpatrywania wniosków o dostęp, sprostowanie, przenoszenie danych, sprzeciw i usunięcie danych oraz to, kto odpowiada za ich dotrzymanie.",
-      "breach": "Zgłaszanie naruszeń: próg, wewnętrzna procedura i harmonogram powiadomień.",
-      "trademark": "Brzmienie noty o znakach towarowych i braku powiązań, która pojawia się na każdej stronie i została przygotowana przez nas, a nie przez prawnika."
     }
   },
   "terms": {
     "meta": {
-      "title": "Regulamin (wersja robocza)",
-      "description": "Robocza wersja regulaminu tego serwisu do przygotowań do egzaminów, przygotowana do weryfikacji prawnej. Zawiera otwarte kwestie, które prawnik musi jeszcze rozstrzygnąć."
+      "title": "Regulamin",
+      "description": "Regulamin tego serwisu do przygotowań do egzaminów: czym jest usługa, konta, płatne plany, dozwolone korzystanie i nasze treści."
     },
     "breadcrumb": "Regulamin",
     "title": "Regulamin",
-    "draftTitle": "To wersja robocza, a nie gotowy dokument prawny",
-    "draftBody": "Napisał go zespół techniczny, aby opisać, co ta aplikacja faktycznie robi, tak by wykwalifikowany prawnik miał konkretny materiał do weryfikacji. Nie został jeszcze przez prawnika sprawdzony, nie stanowi porady prawnej, a otwarte kwestie na końcu naprawdę są otwarte. Polska wersja jest tłumaczeniem; w razie rozbieżności rozstrzygająca jest wersja angielska.",
     "languageVersions": "Ten regulamin jest publikowany w języku angielskim, włoskim, tureckim, hiszpańskim i polskim. W razie rozbieżności między wersjami językowymi rozstrzygająca jest wersja angielska.",
-    "drafted": "Opracowano <time>{date}</time>.",
+    "updated": "Ostatnia aktualizacja: <time>{date}</time>.",
     "service": {
       "heading": "Czym jest ten serwis",
       "p1": "{name} to narzędzie do nauki. Udostępnia oryginalne pytania ćwiczeniowe, rozwiązania krok po kroku i przewodniki opisujące opublikowany format i zasady punktacji kilku testów rekrutacyjnych na studia. Jest pomocą w przygotowaniach i niczym więcej.",
@@ -372,7 +361,7 @@
       "failed": "Jeśli płatność za odnowienie Plus się nie powiedzie, Stripe ponawia ją przez ograniczony czas, a Twój dostęp trwa do końca okresu, którego dotyczyła ta płatność. Jeśli nadal się nie powiedzie, plan się kończy.",
       "priceChange": "Jeśli zmienimy cenę, subskrypcja Plus przejdzie na nową cenę dopiero od jednego z kolejnych odnowień, a my poinformujemy Cię o tym wcześniej. Plan kupiony przed zmianą zachowuje to, co obejmował, w swojej cenie, aż do zakończenia.",
       "deletion": "Usunięcie konta natychmiast anuluje Twoje subskrypcje i kończy każdy karnet, więc nic więcej nie zostaje pobrane za konto, które już nie istnieje.",
-      "refund": "Jeśli płatność zostanie zwrócona w całości, opłacony nią dostęp kończy się w chwili zwrotu. Kiedy udzielamy zwrotów, wciąż jest przedmiotem decyzji; zobacz otwarte kwestie poniżej."
+      "refund": "Jeśli płatność zostanie zwrócona w całości, opłacony nią dostęp kończy się w chwili zwrotu. Kiedy udzielamy zwrotów, wciąż jest przedmiotem decyzji."
     },
     "independence": {
       "heading": "Niezależność i znaki towarowe",
@@ -404,20 +393,7 @@
       "heading": "Zmiany",
       "body": "Jeśli ten regulamin istotnie się zmieni, data powyżej zmieni się razem z nim i nie będziemy jej antydatować."
     },
-    "openQuestions": {
-      "heading": "Otwarte kwestie do weryfikacji prawnej",
-      "intro": "Celowo nierozstrzygnięte. Każda wymaga decyzji, zanim ta wersja robocza stanie się prawdziwym dokumentem.",
-      "entity": "<strong>Strona umowy i prawo właściwe.</strong> Nie wskazano żadnej spółki, jurysdykcji, sądu właściwego ani prawa właściwego, bo żadne nie zostały wybrane.",
-      "liability": "<strong>Ograniczenie odpowiedzialności i wyłączenia gwarancji.</strong> Ta wersja robocza ich nie zawiera. Dopuszczalny zakres zależy od jurysdykcji, a w UE od przepisów o ochronie konsumentów, których nie można wyłączyć umową.",
-      "minors": "<strong>Osoby niepełnoletnie jako strony umowy.</strong> Duża część odbiorców ma mniej niż 18 lat. To, czy osoba niepełnoletnia może zaakceptować ten regulamin i czy wymagana jest zgoda rodzica, zależy od jurysdykcji i wymaga porady prawnej. Dotyczy to teraz także zakupu planu: obecnie nic nie powstrzymuje osoby niepełnoletniej przed zapłatą.",
-      "consumer": "<strong>Prawo konsumenckie a płatne plany.</strong> Czy sformułowanie przy płatności wystarcza, by wygasło 14-dniowe prawo odstąpienia od umowy dla karnetu lub subskrypcji, które zaczynają działać od razu (unijna dyrektywa o prawach konsumentów, włoski kodeks konsumencki); co muszą zawierać informacje przedumowne i e-mail z potwierdzeniem; kiedy udzielać zwrotów (karnet, niewykorzystane miesiące planu rocznego, usunięte konto); oraz jak należy informować o zmianach cen.",
-      "vat": "<strong>VAT.</strong> Ceny zawierają VAT, ale VAT od usług cyfrowych jest należny według stawki kraju kupującego. To, czy zarejestrować się w unijnym systemie One-Stop Shop (OSS) i włączyć Stripe Tax oraz jaką stawkę zakładają stałe ceny, wymaga decyzji podjętej z księgowym.",
-      "trademark": "<strong>Brzmienie noty o znakach towarowych.</strong> Powyższą notę o dozwolonym użyciu nazw (nominative fair use) należy sprawdzić pod kątem opublikowanych wytycznych dotyczących znaków towarowych każdego organizatora egzaminu, zwłaszcza College Board i ACT.",
-      "describing": "<strong>Rzetelny opis egzaminów.</strong> Streszczamy opublikowane zasady egzaminów i podajemy link do źródła. Należy potwierdzić, że mieści się to w granicach dozwolonego użytku i nie narusza praw do baz danych ani praw autorskich do oryginałów.",
-      "training": "<strong>Zakaz trenowania modeli na naszych treściach.</strong> Czy to ograniczenie jest wykonalne i jak powinno współgrać z polityką dla robotów indeksujących w <code>robots.txt</code>, wymaga porady prawnej.",
-      "accessibility": "<strong>Obowiązki w zakresie dostępności.</strong> Naszym celem jest zgodność z WCAG 2.2 AA. Nie rozstrzygnięto, czy na rynkach, na których działamy, obowiązuje wiążący wymóg prawny, ani jaką deklarację zgodności opublikować."
-    },
-    "privacyLink": "Informacja o prywatności (również wersja robocza)"
+    "privacyLink": "Informacja o prywatności"
   },
   "reportQuestion": {
     "meta": {

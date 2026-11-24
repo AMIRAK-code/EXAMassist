@@ -219,17 +219,15 @@
   },
   "privacy": {
     "meta": {
-      "title": "Informativa sulla privacy (bozza)",
-      "description": "Bozza dell’informativa privacy: due cookie (sessione e lingua), niente pubblicità né analisi di terzi, pagamenti con Stripe, dati esportabili o cancellabili."
+      "title": "Informativa sulla privacy",
+      "description": "Informativa privacy: due cookie (sessione e lingua), niente pubblicità né analisi di terzi, pagamenti con Stripe, dati esportabili o cancellabili."
     },
     "breadcrumb": "Informativa sulla privacy",
-    "draftTitle": "Bozza: preparata per la revisione, non ancora esaminata da un avvocato",
-    "draftBody": "Questa è una bozza di lavoro scritta dal team di {name} per descrivere ciò che l’applicazione fa davvero. Non è stata esaminata né approvata da un avvocato, non costituisce consulenza legale e non è un contratto. Le questioni aperte a cui non possiamo rispondere da soli sono elencate per intero alla <link>fine della pagina</link> invece di essere riempite con formule standard.",
     "languageVersions": "Questa informativa è pubblicata in inglese, italiano, turco, spagnolo e polacco. Se le versioni linguistiche differiscono, prevale la versione inglese.",
     "title": "Informativa sulla privacy",
     "lead": "Che cosa conserva questa applicazione, perché lo conserva e che cosa non raccoglie mai, per scelta.",
     "inShort": "Puoi usare {name} senza darci nulla: esercitarti senza account crea un profilo ospite che non contiene alcun dato personale. Se crei un account conserviamo il tuo indirizzo email, un hash con salt della tua password, le impostazioni di studio che scegli e lo storico delle tue esercitazioni. Impostiamo due cookie nostri: uno serve solo a mantenerti connesso, l’altro solo a ricordare la lingua che hai scelto (Stripe aggiunge i propri cookie antifrode solo dove inserisci una carta). Non c’è pubblicità e non ci sono strumenti di analisi di terze parti. Se acquisti un piano, Stripe riceve il pagamento nei propri campi sicuri per la carta e noi conserviamo solo quali piani hai. Puoi esportare o cancellare i tuoi dati dalla <link>pagina del tuo account</link>. Accedere con Google è facoltativo: se lo usi, Google ci comunica il tuo indirizzo email e il tuo nome, e un terzo cookie nostro dura solo i pochi minuti necessari all’accesso.",
-    "drafted": "Redatta da {publisher} · <time>{date}</time>",
+    "updated": "Pubblicata da {publisher} · ultimo aggiornamento <time>{date}</time>",
     "hold": {
       "heading": "1. Che cosa conserviamo",
       "session": {
@@ -305,7 +303,7 @@
       "language": "<strong>Per mostrarti il sito nella tua lingua.</strong> È l’unico compito del cookie della lingua.",
       "history": "<strong>Per restituirti il tuo storico delle esercitazioni.</strong> I risultati, il dettaglio per argomento e la funzione “non mostrarmi più questa domanda per un mese” richiedono tutti che lo storico esista.",
       "fix": "<strong>Per correggere le domande sbagliate.</strong> Una segnalazione dice ai nostri editor quale domanda e quale versione esaminare.",
-      "tutor": "<strong>Per rispondere a una richiesta che hai fatto al tutor IA.</strong> Solo quando premi il pulsante, e solo con il contenuto della domanda e i dati sulla prestazione descritti nelle questioni aperte qui sotto.",
+      "tutor": "<strong>Per rispondere a una richiesta che hai fatto al tutor IA.</strong> Solo quando premi il pulsante, e solo con il contenuto della domanda e i dati sulla prestazione descritti in “Servizi che usiamo” qui sotto.",
       "codes": "<strong>Per inviarti i codici che richiedi.</strong> Un codice di accesso, un codice per il ripristino della password o il codice che conferma il tuo indirizzo quando crei un account.",
       "google": "<strong>Per farti accedere con Google, se lo scegli.</strong> Ciò che Google invia serve solo a trovare o creare il tuo account e a confermare il tuo indirizzo.",
       "abuse": "<strong>Per impedire gli abusi.</strong> Tentativi di accesso, registrazioni, creazione di ospiti, avvio di tentativi, salvataggio delle risposte, codici email e segnalazioni di domande sono tutti soggetti a un limite di richieste.",
@@ -321,43 +319,34 @@
       "origin": "Le richieste che modificano dati vengono verificate rispetto all’origine del sito stesso, oltre all’impostazione SameSite del cookie.",
       "rateLimitKeys": "Le chiavi per il limite di richieste sono sottoposte a hash, quindi gli indirizzi IP in chiaro non vengono conservati."
     },
+    "services": {
+      "heading": "Servizi che usiamo",
+      "intro": "Questi servizi esterni ricevono dati solo per gli scopi descritti qui.",
+      "email": "<strong>Brevo (email).</strong> Recapita i codici di accesso monouso. Per ogni email con un codice riceve l’indirizzo del destinatario, l’oggetto e il messaggio in testo semplice, che contiene il codice.",
+      "payments": "<strong>Stripe (pagamenti).</strong> Quando acquisti un piano, creiamo un cliente Stripe con l’indirizzo email del tuo account, il nome visualizzato (se impostato) e l’id dell’account, e Stripe raccoglie i dati della carta nei propri campi sicuri nella nostra pagina di pagamento. Stripe.js viene caricato da js.stripe.com solo nelle pagine di pagamento e dell’account.",
+      "google": "<strong>Google (accesso facoltativo).</strong> Se scegli di accedere con Google, Google sa che stai accedendo a questo sito e ci invia il tuo indirizzo email e il tuo nome.",
+      "ai": "<strong>Anthropic (tutor IA facoltativo).</strong> Quando premi un pulsante del tutor, il server invia ad Anthropic, tramite la sua API, la domanda, le sue opzioni, la nostra spiegazione revisionata, l’opzione che hai scelto e, per una guida dopo il test, i risultati complessivi della sessione. Non vengono inviati nome, indirizzo email, id dell’account né testo libero che scrivi.",
+      "retention": "<strong>Per quanto tempo conserviamo i dati.</strong> Le sessioni terminano dopo 30 giorni (7 per un ospite), le finestre di limitazione delle richieste vengono eliminate dopo 24 ore, i codici email scadono come descritto sopra e il cookie della lingua dura un anno nel tuo browser. L’account e lo storico di pratica restano finché non cancelli l’account."
+    },
     "controls": {
       "heading": "5. Che cosa puoi fare",
       "export": "<strong>Esportare.</strong> Scarica tutto ciò che è associato al tuo account dalla pagina del tuo account.",
-      "delete": "<strong>Cancellare.</strong> Cancella il tuo account dallo stesso punto. Vedi la questione aperta qui sotto su che cosa dovrebbe comportare la cancellazione dietro le quinte.",
+      "delete": "<strong>Cancellare.</strong> Cancella il tuo account dallo stesso punto. L’account viene contrassegnato come cancellato: smette di funzionare e non compare più in nessuna parte del sito.",
       "signOut": "<strong>Uscire ovunque.</strong> Uscire distrugge la sessione; reimpostare la password distrugge tutte le sessioni dell’account.",
       "guest": "<strong>Restare ospite.</strong> Se non ti registri mai, non c’è niente di personale da esportare o cancellare: cancellare il cookie di sessione chiude la sessione.",
       "language": "<strong>Cambiare o cancellare la lingua.</strong> Scegli un’altra lingua dal menu delle lingue in qualsiasi momento, oppure cancella il cookie della lingua nel tuo browser; il sito mostrerà allora l’inglese o la lingua richiesta dal tuo browser.",
       "accountLink": "Vai alla pagina del tuo account →"
-    },
-    "openQuestions": {
-      "heading": "Questioni aperte per la revisione legale",
-      "intro": "Sono i punti che questa bozza non può risolvere da sola. Sono elencati invece che ipotizzati, perché una risposta dal tono sicuro sarebbe peggio di una lacuna dichiarata.",
-      "controller": "Il titolare del trattamento: quale soggetto giuridico gestisce questo servizio, in quale giurisdizione e quale dovrebbe essere l’indirizzo di contatto per le richieste relative alla privacy. Nulla di ciò che segue può essere finalizzato finché questo punto non è risolto.",
-      "lawfulBasis": "La base giuridica di ciascuna finalità del trattamento ai sensi del GDPR (con ogni probabilità il contratto per l’account e lo storico delle esercitazioni, il legittimo interesse per il limite di richieste e la prevenzione degli abusi) e se questa analisi regge alla revisione.",
-      "retention": "I periodi di conservazione. Oggi non scade nulla tranne le sessioni (30 giorni, o 7 per un ospite), le finestre del limite di richieste (eliminate dopo 24 ore), i codici email (descritti sopra) e il cookie della lingua (un anno, solo nel tuo browser). Per quanto tempo debbano essere conservati un account ospite inattivo, uno storico delle esercitazioni e una segnalazione di domanda già risolta richiede una decisione e poi un’implementazione.",
-      "deletion": "Se la cancellazione debba essere definitiva o la cancellazione logica attualmente implementata. Oggi la cancellazione contrassegna l’account come cancellato, così smette di essere riconosciuto e di comparire ovunque; che cosa succeda alle righe dei tentativi sottostanti, e dopo quanto tempo, è una decisione aperta.",
-      "minors": "Se gli utenti con meno di 16 anni necessitino di un consenso dei genitori verificabile in ciascuna giurisdizione servita, e se un’indicazione autodichiarata sia difendibile. L’indicazione dell’età esiste nel codice ed è autodichiarata; non la verifichiamo e attualmente non chiediamo il consenso.",
-      "hosting": "Dove sono ospitati i dati, se avviene un trasferimento internazionale e che cosa debbano indicare il meccanismo di trasferimento e l’elenco dei sub-responsabili. L’applicazione usa un solo database. Sono coinvolti quattro servizi di terze parti: il tutor IA facoltativo, descritto nel punto successivo; il fornitore di pagamenti, Stripe, descritto subito dopo; il fornitore email, Brevo, che recapita i codici monouso; e, solo per chi lo sceglie, Google, per l’accesso. Per ogni email con un codice Brevo riceve l’indirizzo del destinatario, l’oggetto e il messaggio in testo semplice, che contiene il codice. Che cosa va chiarito per Brevo: il suo ruolo di responsabile del trattamento e le condizioni di trattamento dei dati dell’account, la conservazione del contenuto dei messaggi e dei registri di recapito, e dove tratta i dati. Quando chi studia sceglie di accedere con Google, Google viene a sapere che sta accedendo a questo sito e ci invia i dati descritti sopra. Che cosa va chiarito per Google: se agisce come titolare autonomo del trattamento per il proprio servizio di accesso (la nostra opinione) e le condizioni del client OAuth con cui il sito è registrato.",
-      "tutor": "Il tutor IA. Quando uno studente preme un pulsante del tutor, il server invia al fornitore del modello (Anthropic), tramite la sua API, la domanda, le sue opzioni, la nostra spiegazione revisionata, l’opzione scelta dallo studente e, per una guida dopo il test, i risultati aggregati della sessione. Non vengono inviati nome, indirizzo email, id dell’account né testo libero digitato dallo studente. Che cosa va chiarito: il ruolo del fornitore come responsabile del trattamento e le condizioni di trattamento dei dati con cui è rilasciata la chiave API; la conservazione e l’uso del contenuto delle richieste da parte del fornitore secondo tali condizioni, che non abbiamo verificato e quindi non descriviamo qui; il meccanismo di trasferimento internazionale, se il fornitore tratta i dati fuori dalla giurisdizione dello studente; se i dati sulla prestazione siano dati personali una volta separati dall’account; e se gli studenti con meno di 16 anni possano usare il tutor senza il consenso dei genitori. Finché questi punti non sono risolti, un gestore può lasciare il tutor disattivato, e il sito funziona completamente anche senza.",
-      "payments": "I pagamenti. Quando uno studente acquista un piano, il server crea un cliente Stripe con l’indirizzo email dell’account, il nome visualizzato (se impostato) e l’id dell’account, e Stripe raccoglie i dati della carta nei propri campi sicuri incorporati nella nostra pagina di pagamento (Stripe.js viene caricato da js.stripe.com solo nelle pagine di pagamento e dell’account). Che cosa va chiarito: se i cookie antifrode di Stripe, impostati solo nelle pagine in cui si inserisce una carta, siano strettamente necessari (il nostro parere) o richiedano il consenso; se Stripe agisca come nostro responsabile del trattamento o come titolare autonomo per i dati di pagamento; per quanto tempo i dati di fatturazione debbano essere conservati a fini fiscali e contabili, il che può prevalere su una richiesta di cancellazione di tali dati; il meccanismo di trasferimento internazionale; e se i minori possano acquistare un piano.",
-      "cookies": "Se il cookie di sessione sia da considerare strettamente necessario in ogni giurisdizione servita (il nostro parere è che lo sia, ed è per questo che non viene mostrato alcun banner per il consenso) e se il cookie della lingua, che ricorda solo la lingua che hai scelto, sia esente dal consenso come preferenza dell’interfaccia per la sua durata di un anno (anche questo è il nostro parere); e la conferma che nient’altro sul sito faccia scattare obblighi di consenso.",
-      "rights": "La procedura e i termini per gestire le richieste di accesso, rettifica, portabilità, opposizione e cancellazione, e chi è responsabile del loro rispetto.",
-      "breach": "La notifica delle violazioni dei dati: la soglia, la procedura interna e i tempi di notifica.",
-      "trademark": "La formulazione dell’avviso sui marchi e sull’assenza di affiliazione, che compare in ogni pagina ed è stata redatta da noi e non da un avvocato."
     }
   },
   "terms": {
     "meta": {
-      "title": "Condizioni d’uso (bozza)",
-      "description": "Bozza delle condizioni d’uso di questo sito di preparazione agli esami, preparata per la revisione legale. Include le questioni aperte che un avvocato deve ancora risolvere."
+      "title": "Condizioni d’uso",
+      "description": "Condizioni d’uso di questo sito di preparazione agli esami: il servizio, gli account, i piani a pagamento, l’uso consentito e i nostri contenuti."
     },
     "breadcrumb": "Condizioni d’uso",
     "title": "Condizioni d’uso",
-    "draftTitle": "Questa è una bozza, non un documento legale definitivo",
-    "draftBody": "È stata scritta dal team tecnico per descrivere ciò che questa applicazione fa davvero, così che un avvocato qualificato abbia qualcosa di concreto da esaminare. Non è stata esaminata da un avvocato, non costituisce consulenza legale e le questioni aperte alla fine sono davvero aperte.",
     "languageVersions": "Queste condizioni sono pubblicate in inglese, italiano, turco, spagnolo e polacco. Se le versioni linguistiche differiscono, prevale la versione inglese.",
-    "drafted": "Redatte il <time>{date}</time>.",
+    "updated": "Ultimo aggiornamento: <time>{date}</time>.",
     "service": {
       "heading": "Che cos’è questo servizio",
       "p1": "{name} è uno strumento di studio. Offre domande di esercitazione originali, spiegazioni svolte e guide che descrivono il formato e le regole di punteggio pubblicati di diversi test di ammissione universitari. È un supporto alla preparazione e niente di più.",
@@ -372,7 +361,7 @@
       "failed": "Se un pagamento di rinnovo di Plus non va a buon fine, Stripe lo ritenta per un periodo limitato e il tuo accesso continua fino alla fine del periodo a cui si riferiva quel pagamento. Se continua a non andare a buon fine, il piano termina.",
       "priceChange": "Se cambiamo un prezzo, un abbonamento Plus passa al nuovo prezzo solo da un rinnovo successivo, e te lo comunicheremo prima. Un piano acquistato prima del cambiamento mantiene ciò che includeva, al suo prezzo, fino alla sua scadenza.",
       "deletion": "Eliminare l’account annulla subito i tuoi abbonamenti e chiude ogni pass, così non viene addebitato altro per un account che non esiste più.",
-      "refund": "Se un pagamento viene rimborsato per intero, l’accesso che pagava termina al momento del rimborso. Quando concedere i rimborsi è ancora da decidere; vedi le questioni aperte qui sotto."
+      "refund": "Se un pagamento viene rimborsato per intero, l’accesso che pagava termina al momento del rimborso. Quando concedere i rimborsi è ancora da decidere."
     },
     "independence": {
       "heading": "Indipendenza e marchi",
@@ -404,20 +393,7 @@
       "heading": "Modifiche",
       "body": "Se queste condizioni cambiano in modo sostanziale, la data indicata sopra cambia con loro, e non la retrodateremo."
     },
-    "openQuestions": {
-      "heading": "Questioni aperte per la revisione legale",
-      "intro": "Lasciate deliberatamente irrisolte. Ognuna richiede una decisione prima che questa bozza diventi un documento effettivo.",
-      "entity": "<strong>Soggetto contraente e legge applicabile.</strong> Non sono indicati società, giurisdizione, foro competente né legge applicabile, perché nessuno è stato ancora scelto.",
-      "liability": "<strong>Limitazione di responsabilità ed esclusioni di garanzia.</strong> Questa bozza non ne contiene. L’ambito consentito dipende dalla giurisdizione e, nell’UE, dalle norme a tutela dei consumatori, che non possono essere derogate per contratto.",
-      "minors": "<strong>Minori come parti contraenti.</strong> Gran parte del pubblico ha meno di 18 anni. Se un minore possa accettare queste condizioni, e se sia necessario il consenso dei genitori, varia a seconda della giurisdizione e richiede una consulenza. Ora questo riguarda anche l’acquisto di un piano: oggi nulla impedisce a un minore di pagare.",
-      "consumer": "<strong>Diritto dei consumatori per i piani a pagamento.</strong> Se la formulazione al momento del pagamento basta a far cessare il diritto di recesso di 14 giorni per un pass o un abbonamento che inizia subito (direttiva UE sui diritti dei consumatori, Codice del consumo); cosa devono contenere le informazioni precontrattuali e l’email di conferma; quando concedere i rimborsi (un pass, i mesi non usati di un piano annuale, un account eliminato); e come vanno comunicati i cambi di prezzo.",
-      "vat": "<strong>IVA.</strong> I prezzi includono l’IVA, ma l’IVA sui servizi digitali è dovuta con l’aliquota del paese dell’acquirente. Se registrarsi allo sportello unico UE (OSS) e attivare Stripe Tax, e quale aliquota presuppongano i prezzi fissi, richiede una decisione insieme a un commercialista.",
-      "trademark": "<strong>Formulazione sui marchi.</strong> L’avviso di uso descrittivo (nominative fair use) riportato sopra andrebbe verificato rispetto alle linee guida sui marchi pubblicate da ciascun ente, in particolare quelle di College Board e di ACT.",
-      "describing": "<strong>Descrivere gli esami in modo accurato.</strong> Riassumiamo le regole d’esame pubblicate e citiamo la fonte. Va confermato che questo rientri nel fair use e non violi diritti sulle banche dati o diritti d’autore sugli originali.",
-      "training": "<strong>Divieto di addestrare modelli sui nostri contenuti.</strong> Se questo divieto sia applicabile, e come debba conciliarsi con la politica per i crawler in <code>robots.txt</code>, richiede una consulenza.",
-      "accessibility": "<strong>Obblighi di accessibilità.</strong> Puntiamo alla conformità WCAG 2.2 AA. Se nei mercati serviti si applichi un obbligo di legge vincolante, e quale dichiarazione di conformità pubblicare, non è ancora deciso."
-    },
-    "privacyLink": "Informativa sulla privacy (anche questa è una bozza)"
+    "privacyLink": "Informativa sulla privacy"
   },
   "reportQuestion": {
     "meta": {

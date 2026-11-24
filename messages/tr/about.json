@@ -219,17 +219,15 @@
   },
   "privacy": {
     "meta": {
-      "title": "Gizlilik bildirimi (taslak)",
-      "description": "Taslak gizlilik bildirimi: iki çerez (oturum ve dil), reklam ve üçüncü taraf analiz yok, ödemeler Stripe ile; verilerinizi hesabınızdan dışa aktarın veya silin."
+      "title": "Gizlilik bildirimi",
+      "description": "Gizlilik bildirimi: iki çerez (oturum ve dil), reklam ve üçüncü taraf analiz yok, ödemeler Stripe ile; verilerinizi hesabınızdan dışa aktarın veya silin."
     },
     "breadcrumb": "Gizlilik bildirimi",
-    "draftTitle": "Taslak: inceleme için hazırlandı, henüz bir avukat tarafından incelenmedi",
-    "draftBody": "Bu, {name} ekibi tarafından uygulamanın gerçekte ne yaptığını anlatmak için yazılmış bir çalışma taslağıdır. Bir avukat tarafından incelenmemiş veya onaylanmamıştır; hukuki tavsiye değildir ve bir sözleşme değildir. Kendi başımıza yanıtlayamadığımız açık sorular, kalıp ifadelerle doldurulmak yerine <link>sayfanın sonunda</link> eksiksiz olarak listelenmiştir.",
     "languageVersions": "Bu bildirim İngilizce, İtalyanca, Türkçe, İspanyolca ve Lehçe olarak yayımlanmaktadır. Dil sürümleri arasında herhangi bir farklılık olması hâlinde İngilizce sürüm esas alınır.",
     "title": "Gizlilik bildirimi",
     "lead": "Bu uygulamanın neleri sakladığı, neden sakladığı ve bilinçli olarak hiçbir zaman neleri toplamadığı.",
     "inShort": "{name} hizmetini bize hiçbir şey vermeden kullanabilirsiniz: hesap olmadan alıştırma yapmak, hiçbir kişisel veri içermeyen bir misafir kaydı oluşturur. Bir hesap oluşturursanız e-posta adresinizi, parolanızın tuzlanmış bir özetini (hash), belirlediğiniz çalışma ayarlarını ve alıştırma geçmişinizi saklarız. Kendimize ait iki çerez kullanırız: biri yalnızca oturumunuzu açık tutar, diğeri yalnızca seçtiğiniz dili hatırlar (Stripe, yalnızca kart bilgisi girdiğiniz yerlerde kendi dolandırıcılık önleme çerezlerini ekler). Reklam ve üçüncü taraf analiz yoktur. Bir plan satın alırsanız ödemeyi Stripe kendi güvenli kart alanlarında alır; biz yalnızca hangi planlara sahip olduğunuzu saklarız. Verilerinizi <link>hesap sayfanızdan</link> dışa aktarabilir veya silebilirsiniz. Google ile giriş yapmak isteğe bağlıdır: kullanırsanız Google bize e-posta adresinizi ve adınızı iletir, kendimize ait üçüncü bir çerez de yalnızca girişin sürdüğü birkaç dakika boyunca kalır.",
-    "drafted": "Hazırlayan: {publisher} · <time>{date}</time>",
+    "updated": "Yayımlayan: {publisher} · son güncelleme <time>{date}</time>",
     "hold": {
       "heading": "1. Sakladığımız veriler",
       "session": {
@@ -305,7 +303,7 @@
       "language": "<strong>Siteyi sizin dilinizde göstermek için.</strong> Dil çerezinin tek görevi budur.",
       "history": "<strong>Alıştırma geçmişinizi size geri vermek için.</strong> Sonuçlar, konu dağılımları ve “bu soruyu bir ay boyunca bana yeniden gösterme” davranışı, geçmişin var olmasını gerektirir.",
       "fix": "<strong>Kötü soruları düzeltmek için.</strong> Bir bildirim, editörlerimize hangi soruya ve hangi sürüme bakmaları gerektiğini söyler.",
-      "tutor": "<strong>Yaptığınız bir yapay zekâ eğitmeni isteğini yanıtlamak için.</strong> Yalnızca düğmeye bastığınızda ve yalnızca aşağıdaki açık sorularda anlatılan soru içeriği ve performans verileriyle.",
+      "tutor": "<strong>Yaptığınız bir yapay zekâ eğitmeni isteğini yanıtlamak için.</strong> Yalnızca düğmeye bastığınızda ve yalnızca aşağıda “Kullandığımız hizmetler” bölümünde anlatılan soru içeriği ve performans verileriyle.",
       "codes": "<strong>İstediğiniz kodları göndermek için.</strong> Bir giriş kodu, bir parola sıfırlama kodu ya da hesap oluşturduğunuzda adresinizi doğrulayan kod.",
       "google": "<strong>Seçerseniz Google ile giriş yapmanızı sağlamak için.</strong> Google’ın gönderdikleri yalnızca hesabınızı bulmak ya da oluşturmak ve adresinizi doğrulamak için kullanılır.",
       "abuse": "<strong>Kötüye kullanımı önlemek için.</strong> Giriş denemeleri, kayıtlar, misafir hesabı oluşturma, oturum başlatma, cevap kaydetme, e-posta kodları ve soru bildirimlerinin tümü istek sınırlamasına tabidir.",
@@ -321,43 +319,34 @@
       "origin": "Durum değiştiren istekler, SameSite çerez ayarına ek olarak sitenin kendi kaynağına (origin) göre de kontrol edilir.",
       "rateLimitKeys": "İstek sınırı anahtarları özetlenir; bu nedenle ham IP adresleri saklanmaz."
     },
+    "services": {
+      "heading": "Kullandığımız hizmetler",
+      "intro": "Bu dış hizmetler verileri yalnızca burada açıklanan amaçlar için alır.",
+      "email": "<strong>Brevo (e-posta).</strong> Tek kullanımlık giriş kodlarını iletir. Her kod e-postası için alıcı adresini, konuyu ve kodu içeren düz metin mesajı alır.",
+      "payments": "<strong>Stripe (ödemeler).</strong> Bir plan satın aldığınızda, hesabınızın e-posta adresi, görünen adı (ayarlıysa) ve hesap kimliğiyle bir Stripe müşterisi oluştururuz; Stripe kartınızı ödeme sayfamızdaki kendi güvenli alanlarında alır. Stripe.js yalnızca ödeme ve hesap sayfalarında js.stripe.com adresinden yüklenir.",
+      "google": "<strong>Google (isteğe bağlı giriş).</strong> Google ile giriş yapmayı seçerseniz Google bu siteye giriş yaptığınızı öğrenir ve bize e-posta adresinizi ve adınızı gönderir.",
+      "ai": "<strong>Anthropic (isteğe bağlı yapay zekâ eğitmeni).</strong> Bir eğitmen düğmesine bastığınızda sunucu soruyu, seçeneklerini, incelenmiş açıklamamızı, seçtiğiniz seçeneği ve test sonrası rehber için oturumun toplu sonuçlarını API’si aracılığıyla Anthropic’e gönderir. Ad, e-posta adresi, hesap kimliği veya yazdığınız serbest metin gönderilmez.",
+      "retention": "<strong>Verileri ne kadar saklıyoruz.</strong> Oturumlar 30 gün sonra (misafir için 7) sona erer, istek sınırı pencereleri 24 saat sonra silinir, e-posta kodları yukarıda anlatıldığı gibi geçerliliğini yitirir ve dil çerezi tarayıcınızda bir yıl kalır. Hesabınız ve çalışma geçmişiniz, hesabı silene kadar saklanır."
+    },
     "controls": {
       "heading": "5. Neler yapabilirsiniz",
       "export": "<strong>Dışa aktarın.</strong> Hesabınızla ilişkili her şeyi hesap sayfanızdan indirin.",
-      "delete": "<strong>Silin.</strong> Hesabınızı aynı yerden silin. Silme işleminin arka planda ne anlama gelmesi gerektiğine ilişkin aşağıdaki açık soruya bakın.",
+      "delete": "<strong>Silin.</strong> Hesabınızı aynı yerden silin. Hesap silinmiş olarak işaretlenir: çalışmayı bırakır ve sitenin hiçbir yerinde artık görünmez.",
       "signOut": "<strong>Her yerde oturumu kapatın.</strong> Çıkış yapmak oturumu sonlandırır; parolanızı sıfırlamak ise hesabın tüm oturumlarını sonlandırır.",
       "guest": "<strong>Misafir olarak kalın.</strong> Hiç kaydolmazsanız, zaten dışa aktarılacak ya da silinecek kişisel bir şey yoktur; oturum çerezini temizlemek oturumu sona erdirir.",
       "language": "<strong>Dilinizi değiştirin ya da temizleyin.</strong> İstediğiniz zaman dil menüsünden başka bir dil seçin ya da tarayıcınızda dil çerezini silin; site bu durumda İngilizce ya da tarayıcınızın istediği dilde görüntülenir.",
       "accountLink": "Hesap sayfanıza gidin →"
-    },
-    "openQuestions": {
-      "heading": "Hukuki inceleme için açık sorular",
-      "intro": "Bunlar, bu taslağın kendi başına çözemediği noktalardır. Tahmin edilmek yerine listelenmişlerdir, çünkü burada kendinden emin görünen bir cevap, açıkça kabul edilmiş bir boşluktan daha kötü olurdu.",
-      "controller": "Veri sorumlusu: bu hizmeti hangi tüzel kişinin, hangi yargı bölgesinde işlettiği ve gizlilik talepleri için iletişim adresinin ne olması gerektiği. Bu konu çözülmeden aşağıdakilerin hiçbiri kesinleştirilemez.",
-      "lawfulBasis": "GDPR kapsamında her işleme amacının hukuki dayanağı (büyük olasılıkla hesap ve alıştırma geçmişi için sözleşme, istek sınırlaması ve kötüye kullanımın önlenmesi için meşru menfaat) ve bu analizin incelemeden geçip geçmeyeceği.",
-      "retention": "Saklama süreleri. Bugün oturumlar (30 gün, misafir için 7 gün), istek sınırı aralıkları (24 saat sonra temizlenir), e-posta kodları (yukarıda anlatıldığı gibi) ve dil çerezi (bir yıl, yalnızca tarayıcınızda) dışında hiçbir şeyin süresi dolmaz. Etkin olmayan bir misafir hesabının, bir alıştırma geçmişinin ve çözülmüş bir soru bildiriminin ne kadar süre saklanacağı konusunda bir karar verilmesi ve ardından bunun uygulanması gerekiyor.",
-      "deletion": "Silmenin kalıcı silme mi, yoksa şu anda uygulanan geçici (yumuşak) silme mi olması gerektiği. Bugün silme işlemi hesabı silinmiş olarak işaretler; böylece hesap artık tanınmaz ve hiçbir yerde görünmez. Alttaki oturum satırlarına ne olacağı ve bunun ne kadar süre sonra olacağı henüz karara bağlanmamıştır.",
-      "minors": "Hizmet verdiğimiz her yargı bölgesinde 16 yaşından küçük kullanıcılar için doğrulanabilir ebeveyn onayı gerekip gerekmediği ve kendi beyanına dayalı bir işaretin savunulabilir olup olmadığı. Yaş işareti kodda vardır ve kullanıcının beyanına dayanır; bunu doğrulamayız ve şu anda onay istemeyiz.",
-      "hosting": "Verilerin nerede barındırıldığı, herhangi bir uluslararası aktarım olup olmadığı ve aktarım mekanizması ile alt işleyen listesinin ne söylemesi gerektiği. Uygulama tek bir veritabanı kullanır. Dört üçüncü taraf hizmet söz konusudur: bir sonraki maddede anlatılan isteğe bağlı yapay zekâ eğitmeni; ondan sonra anlatılan ödeme hizmeti sağlayıcısı Stripe; tek kullanımlık kodları ileten e-posta hizmeti sağlayıcısı Brevo; ve yalnızca bunu seçenler için, giriş amacıyla Google. Brevo her kod e-postası için alıcı adresini, konuyu ve kodu içeren düz metin mesajı alır. Brevo için netleştirilmesi gerekenler: veri işleyen statüsü ve hesabın veri işleme koşulları, mesaj içeriğini ve teslim kayıtlarını saklaması ve verileri nerede işlediği. Bir kullanıcı Google ile giriş yapmayı seçtiğinde Google, bu siteye giriş yaptığını öğrenir ve bize yukarıda anlatılan bilgileri gönderir. Google için netleştirilmesi gerekenler: kendi giriş hizmeti için bağımsız veri sorumlusu olarak hareket edip etmediği (bizim görüşümüz bu yönde) ve sitenin kayıtlı olduğu OAuth istemcisinin koşulları.",
-      "tutor": "Yapay zekâ eğitmeni. Bir öğrenci bir eğitmen düğmesine bastığında sunucu; soruyu, seçeneklerini, incelenmiş açıklamamızı, öğrencinin hangi seçeneği seçtiğini ve test sonrası rehber için oturumun toplu sonuçlarını API’si aracılığıyla model sağlayıcısına (Anthropic) gönderir. Ad, e-posta adresi, hesap kimliği ya da öğrencinin yazdığı serbest metin gönderilmez. Netleştirilmesi gerekenler: sağlayıcının veri işleyen statüsü ve API anahtarının verildiği veri işleme koşulları; sağlayıcının bu koşullar kapsamında istek içeriğini saklaması ve kullanması (bunu doğrulamadık, bu nedenle burada anlatmıyoruz); sağlayıcı verileri öğrencinin yargı bölgesi dışında işliyorsa uluslararası aktarım mekanizması; performans verilerinin hesaptan ayrıldıktan sonra kişisel veri sayılıp sayılmadığı; ve 16 yaşından küçük öğrencilerin eğitmeni ebeveyn onayı olmadan kullanıp kullanamayacağı. Bunlar netleşene kadar bir işletmeci eğitmeni kapalı tutabilir; site onsuz da eksiksiz çalışır.",
-      "payments": "Ödemeler. Bir öğrenci bir plan satın aldığında sunucu, hesabın e-posta adresi, (belirlenmişse) görünen adı ve hesap kimliğiyle bir Stripe müşterisi oluşturur; Stripe da kartı, ödeme sayfamıza yerleştirilmiş kendi güvenli alanlarında toplar (Stripe.js yalnızca ödeme ve hesap sayfalarında js.stripe.com adresinden yüklenir). Netleştirilmesi gerekenler: Stripe’ın yalnızca kart girilen sayfalarda ayarlanan dolandırıcılık önleme çerezlerinin kesinlikle gerekli sayılıp sayılmadığı (bizim görüşümüz) ya da onay gerektirip gerektirmediği; Stripe’ın ödeme verileri açısından bizim veri işleyenimiz mi, yoksa bağımsız bir veri sorumlusu mu olduğu; vergi ve muhasebe için ödeme kayıtlarının ne kadar süre saklanması gerektiği (bu, söz konusu kayıtlar için bir silme talebinin önüne geçebilir); uluslararası aktarım mekanizması; ve reşit olmayanların plan satın alıp alamayacağı.",
-      "cookies": "Oturum çerezinin hizmet verilen her yargı bölgesinde kesinlikle gerekli sayılıp sayılmadığı (bizim görüşümüz sayıldığı yönündedir; bu yüzden onay başlığı gösterilmiyor), yalnızca seçtiğiniz dili hatırlayan dil çerezinin bir yıllık ömrü boyunca bir kullanıcı arayüzü tercihi olarak onaydan muaf olup olmadığı (bu da bizim görüşümüz) ve sitede onay gerekliliklerini doğuracak başka hiçbir şeyin bulunmadığının teyidi.",
-      "rights": "Erişim, düzeltme, taşınabilirlik, itiraz ve silme taleplerinin ele alınmasına ilişkin süreç ve süreler ile bunların karşılanmasından kimin sorumlu olduğu.",
-      "breach": "İhlal bildirimi: eşik, iç süreç ve bildirim takvimi.",
-      "trademark": "Her sayfada yer alan ve bir avukat tarafından değil, bizim tarafımızdan hazırlanan ticari marka ve bağlantısızlık bildiriminin ifadesi."
     }
   },
   "terms": {
     "meta": {
-      "title": "Kullanım koşulları (taslak)",
-      "description": "Bu sınav hazırlık sitesi için hukuki inceleme amacıyla hazırlanmış taslak kullanım koşulları. Bir avukatın hâlâ çözmesi gereken açık soruları da içerir."
+      "title": "Kullanım koşulları",
+      "description": "Bu sınav hazırlık sitesinin kullanım koşulları: hizmetin ne olduğu, hesaplar, ücretli planlar, kabul edilebilir kullanım ve içeriğimiz."
     },
     "breadcrumb": "Kullanım koşulları",
     "title": "Kullanım koşulları",
-    "draftTitle": "Bu bir taslaktır, tamamlanmış bir hukuki belge değildir",
-    "draftBody": "Bu metin, nitelikli bir avukatın inceleyebileceği somut bir şey olması için mühendislik ekibi tarafından bu uygulamanın gerçekte ne yaptığını anlatmak amacıyla yazıldı. Bir avukat tarafından incelenmedi, hukuki tavsiye değildir ve sondaki açık sorular gerçekten açıktır.",
     "languageVersions": "Bu koşullar İngilizce, İtalyanca, Türkçe, İspanyolca ve Lehçe olarak yayımlanmaktadır. Dil sürümleri arasında herhangi bir farklılık olması hâlinde İngilizce sürüm esas alınır.",
-    "drafted": "Hazırlanma tarihi: <time>{date}</time>.",
+    "updated": "Son güncelleme: <time>{date}</time>.",
     "service": {
       "heading": "Bu hizmet nedir",
       "p1": "{name} bir çalışma aracıdır. Özgün alıştırma soruları, çözümlü açıklamalar ve birçok üniversite giriş sınavının yayımlanmış formatını ve puanlama kurallarını anlatan rehberler sunar. Bir hazırlık yardımcısıdır, daha fazlası değil.",
@@ -372,7 +361,7 @@
       "failed": "Bir Plus yenileme ödemesi başarısız olursa Stripe bunu sınırlı bir süre boyunca yeniden dener ve erişiminiz o ödemenin ait olduğu dönemin sonuna kadar devam eder. Ödeme yine başarısız olursa plan sona erer.",
       "priceChange": "Bir fiyatı değiştirirsek, bir Plus aboneliği yeni fiyata ancak sonraki bir yenilemeden itibaren geçer ve bunu size önceden bildiririz. Değişiklikten önce satın alınan bir plan, sona erene kadar kapsadığı her şeyi kendi fiyatıyla korur.",
       "deletion": "Hesabınızı silmek aboneliklerinizi hemen iptal eder ve her paketi sona erdirir; böylece artık var olmayan bir hesap için başka ücret alınmaz.",
-      "refund": "Bir ödeme tamamen iade edilirse, o ödemeyle alınan erişim iade yapıldığında sona erer. İadelerin hangi durumlarda yapılacağı henüz kararlaştırılmadı; aşağıdaki açık sorulara bakın."
+      "refund": "Bir ödeme tamamen iade edilirse, o ödemeyle alınan erişim iade yapıldığında sona erer. İadelerin hangi durumlarda yapılacağı henüz kararlaştırılmadı."
     },
     "independence": {
       "heading": "Bağımsızlık ve ticari markalar",
@@ -404,20 +393,7 @@
       "heading": "Değişiklikler",
       "body": "Bu koşullar önemli ölçüde değişirse yukarıdaki tarih de onlarla birlikte değişir; bu tarihi geriye dönük olarak değiştirmeyiz."
     },
-    "openQuestions": {
-      "heading": "Hukuki inceleme için açık sorular",
-      "intro": "Bilinçli olarak çözümsüz bırakıldı. Bu taslağın gerçek bir belgeye dönüşmesi için her biri hakkında karar verilmesi gerekiyor.",
-      "entity": "<strong>Sözleşmeyi yapan taraf ve uygulanacak hukuk.</strong> Hiçbir şirket, yargı bölgesi, yetkili mahkeme ya da uygulanacak hukuk belirtilmemiştir, çünkü henüz hiçbiri seçilmemiştir.",
-      "liability": "<strong>Sorumluluğun sınırlandırılması ve garanti reddi.</strong> Bu taslak bunları içermez. İzin verilen kapsam yargı bölgesine ve AB’de sözleşmeyle bertaraf edilemeyen tüketiciyi koruma kurallarına bağlıdır.",
-      "minors": "<strong>Sözleşme tarafı olarak reşit olmayanlar.</strong> Kitlenin büyük bir kısmı 18 yaşından küçüktür. Reşit olmayan birinin bu koşulları kabul edip edemeyeceği ve ebeveyn onayının gerekip gerekmediği yargı bölgesine göre değişir ve hukuki danışmanlık gerektirir. Bu artık plan satın almayı da kapsıyor: bugün hiçbir şey reşit olmayan birinin ödeme yapmasını engellemiyor.",
-      "consumer": "<strong>Ücretli planlar için tüketici hukuku.</strong> Ödeme sırasındaki ifadenin, hemen başlayan bir paket ya da abonelik için 14 günlük cayma hakkını sona erdirmeye yetip yetmediği (AB Tüketici Hakları Direktifi, İtalyan Tüketici Kanunu); sözleşme öncesi bilgilerin ve onay e-postasının neleri içermesi gerektiği; iadelerin hangi durumlarda yapılacağı (bir paket, yıllık planın kullanılmamış ayları, silinen bir hesap); ve fiyat değişikliklerinin nasıl bildirilmesi gerektiği.",
-      "vat": "<strong>KDV.</strong> Fiyatlara KDV dahildir, ancak dijital hizmetlerde KDV alıcının ülkesindeki oran üzerinden ödenir. AB Tek Durak Noktası (One-Stop Shop) sistemine kaydolunup kaydolunmayacağı, Stripe Tax’in etkinleştirilip etkinleştirilmeyeceği ve sabit fiyatların hangi oranı esas aldığı konusunda bir mali müşavirle birlikte karar verilmesi gerekiyor.",
-      "trademark": "<strong>Ticari marka ifadesi.</strong> Yukarıdaki adlandırıcı adil kullanım (nominative fair use) bildirimi, her sınav kurumunun yayımladığı ticari marka yönergeleriyle, özellikle College Board’un ve ACT’nin yönergeleriyle karşılaştırılarak kontrol edilmelidir.",
-      "describing": "<strong>Sınavları doğru anlatmak.</strong> Yayımlanmış sınav kurallarını özetliyor ve kaynağa bağlantı veriyoruz. Bunun adil kullanım sınırları içinde kaldığı ve asıl metinler üzerindeki veri tabanı ya da telif haklarını ihlal etmediği teyit edilmelidir.",
-      "training": "<strong>İçeriğimizle model eğitilmesini yasaklamak.</strong> Bu kısıtlamanın uygulanabilir olup olmadığı ve <code>robots.txt</code> dosyasındaki tarayıcı politikasıyla nasıl etkileşmesi gerektiği hukuki danışmanlık gerektirir.",
-      "accessibility": "<strong>Erişilebilirlik yükümlülükleri.</strong> WCAG 2.2 AA düzeyini hedefliyoruz. Hizmet verilen pazarlarda bağlayıcı bir yasal yükümlülüğün geçerli olup olmadığı ve hangi uygunluk beyanının yayımlanacağı henüz kararlaştırılmadı."
-    },
-    "privacyLink": "Gizlilik bildirimi (o da bir taslak)"
+    "privacyLink": "Gizlilik bildirimi"
   },
   "reportQuestion": {
     "meta": {
